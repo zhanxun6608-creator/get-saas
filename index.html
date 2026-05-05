@@ -89,31 +89,286 @@
   </script>
 
   <style>
-    /* Hero decorative cards */
-    .hero-card-1 { transform: rotate(-5deg) translateY(8px); z-index: 1; }
-    .hero-card-2 { transform: rotate(0deg); z-index: 2; }
-    .hero-card-3 { transform: rotate(5deg) translateY(8px); z-index: 1; }
+    /* ===== Dark SaaS Design System ===== */
+    :root {
+      --bg-primary: #1a1a1a;
+      --bg-secondary: #1e1e1e;
+      --bg-card: #242424;
+      --bg-card-hover: #2a2a2a;
+      --border-subtle: rgba(255,255,255,0.06);
+      --border-medium: rgba(255,255,255,0.10);
+      --border-hover: rgba(138,43,226,0.25);
+      --accent: #6366F1;
+      --accent-glow: rgba(138,43,226,0.15);
+      --accent-strong: #8B5CF6;
+      --text-primary: #F9FAFB;
+      --text-secondary: #9CA3AF;
+      --text-muted: #6B7280;
+      --hero-glow: rgba(138,43,226,0.1);
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-secondary);
+    }
+
+    /* ===== Nav ===== */
+    .site-nav {
+      background: rgba(26,26,26,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    /* ===== Hero ===== */
+    .hero-section {
+      background: var(--bg-primary);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(138,43,226,0.015) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -15%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, var(--hero-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-card-1 { transform: rotate(-5deg) translateY(8px); z-index: 1; backdrop-filter: blur(1px); }
+    .hero-card-2 { transform: rotate(0deg); z-index: 2; box-shadow: 0 8px 48px rgba(99,102,241,0.1); }
+    .hero-card-3 { transform: rotate(5deg) translateY(8px); z-index: 1; backdrop-filter: blur(1px); }
     @media (max-width: 1023px) {
       .hero-card-1 { transform: rotate(-3deg) translateY(4px); }
       .hero-card-3 { transform: rotate(3deg) translateY(4px); }
     }
 
-    /* FAQ */
+    /* ===== Buttons ===== */
+    .gradient-cta {
+      background: linear-gradient(135deg, #6366F1, #8B5CF6);
+      color: #fff;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 16px rgba(99,102,241,0.25);
+    }
+    .gradient-cta:hover {
+      background: linear-gradient(135deg, #5B21F6, #7C3AED);
+      box-shadow: 0 6px 24px rgba(99,102,241,0.4);
+      transform: translateY(-1px);
+    }
+
+    /* ===== Badges ===== */
+    .badge-browser {
+      background: rgba(99,102,241,0.12);
+      color: #a5b4fc;
+      border: 1px solid rgba(99,102,241,0.2);
+    }
+    .badge-research {
+      background: rgba(96,165,250,0.12);
+      color: #93c5fd;
+      border: 1px solid rgba(96,165,250,0.2);
+    }
+    .badge-task {
+      background: rgba(139,92,246,0.12);
+      color: #c4b5fd;
+      border: 1px solid rgba(139,92,246,0.2);
+    }
+
+    /* ===== Cards ===== */
+    .tool-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.25s ease;
+    }
+    .tool-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(138,43,226,0.4);
+      box-shadow: 0 16px 56px rgba(0,0,0,0.45), 0 0 0 2px rgba(138,43,226,0.15), 0 0 60px rgba(138,43,226,0.06);
+    }
+
+    .trend-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .trend-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #6366F1, #8B5CF6);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .trend-card:hover::before { opacity: 1; }
+    .trend-card:hover {
+      border-color: rgba(138,43,226,0.3);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 40px rgba(138,43,226,0.05);
+      transform: translateY(-3px);
+    }
+
+    .quick-nav-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.25s ease;
+    }
+    .quick-nav-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(138,43,226,0.4);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 0 2px rgba(138,43,226,0.12);
+    }
+
+    .trust-card {
+      background: var(--bg-card);
+      border: 1px solid transparent;
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.25s ease;
+    }
+    .trust-card:hover {
+      transform: translateY(-4px);
+      background: var(--bg-card-hover);
+      border-color: rgba(138,43,226,0.25);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 30px rgba(138,43,226,0.05);
+    }
+    .trust-card:hover .trust-icon {
+      color: #a5b4fc;
+      filter: drop-shadow(0 0 8px rgba(138,43,226,0.3));
+    }
+
+    /* ===== FAQ ===== */
     .faq-chevron { transition: transform 0.3s ease; }
     .faq-trigger[aria-expanded="true"] .faq-chevron { transform: rotate(180deg); }
     .faq-panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
     .faq-panel.open { max-height: 400px; }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.25s ease;
+    }
+    .faq-item:hover {
+      border-color: rgba(138,43,226,0.35);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25), 0 0 0 2px rgba(138,43,226,0.08);
+      transform: translateX(4px);
+    }
+    .faq-trigger[aria-expanded="true"] {
+      color: #a5b4fc;
+    }
 
-    /* Card hover */
-    .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    /* ===== CTA section ===== */
+    .cta-section {
+      background: var(--bg-primary);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(138,43,226,0.012) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(138,43,226,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .subscribe-card {
+      background: rgba(36,36,36,0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.25s ease;
+    }
+    .subscribe-card:hover {
+      border-color: rgba(138,43,226,0.35);
+      background: rgba(42,42,42,0.9);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 30px rgba(138,43,226,0.06);
+      transform: translateY(-3px);
+    }
 
-    /* Mobile menu */
+    /* ===== Footer ===== */
+    .site-footer {
+      background: #151515;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* ===== For whom section ===== */
+    .for-card {
+      background: var(--bg-card);
+      transition: all 0.25s ease;
+      border: 1px solid var(--border-subtle);
+    }
+    .for-card:hover {
+      border-color: rgba(138,43,226,0.3);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 30px rgba(138,43,226,0.06);
+      transform: translateY(-3px);
+    }
+    .for-yes {
+      background: linear-gradient(180deg, rgba(99,102,241,0.06) 0%, var(--bg-card) 40%);
+      border-color: rgba(99,102,241,0.15);
+    }
+    .for-no {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, var(--bg-card) 40%);
+    }
+
+    /* ===== Selection guide ===== */
+    .selection-row {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.2s ease;
+    }
+    .selection-row:hover {
+      border-color: rgba(138,43,226,0.35);
+      box-shadow: 0 0 0 4px rgba(138,43,226,0.08), 0 8px 24px rgba(0,0,0,0.25);
+      transform: translateX(6px);
+    }
+
+    /* ===== Section backgrounds ===== */
+    .section-dark { background: var(--bg-primary); }
+    .section-card { background: var(--bg-secondary); }
+
+    /* ===== Mobile menu ===== */
     .mobile-menu { display: none; }
-    .mobile-menu.open { display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 50; padding: 2rem; }
+    .mobile-menu.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+      background: rgba(26,26,26,0.97);
+      backdrop-filter: blur(12px);
+      z-index: 50; padding: 2rem;
+    }
 
-    /* Focus */
-    *:focus-visible { outline: none; box-shadow: 0 0 0 2px #2563eb; border-radius: 4px; }
+    /* ===== Utility ===== */
+    *:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(99,102,241,0.35); border-radius: 4px; }
+    .data-highlight { color: #a5b4fc; font-weight: 700; }
+    .text-accent { color: #a5b4fc; }
+    .text-heading { color: var(--text-primary); }
+    .text-body { color: var(--text-secondary); }
+    .border-subtle { border-color: var(--border-subtle); }
+
+    /* Horizontal rule */
+    hr.section-hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06) 30%, rgba(255,255,255,0.06) 70%, transparent);
+      margin: 0;
+    }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -121,433 +376,554 @@
     }
   </style>
 </head>
-<body class="antialiased text-slate-700">
+<body class="antialiased text-slate-300">
 
   <!-- Skip to content -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- ====== Section 00: Sticky Nav ====== -->
-  <header id="nav" class="sticky top-0 z-40 bg-white/90 backdrop-blur-md transition-shadow">
+  <header id="nav" class="site-nav sticky top-0 z-40 transition-shadow">
     <div class="max-w-container mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="text-xl font-bold text-slate-900" aria-label="DoWithAI Home">DoWithAI</a>
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600" aria-label="Main navigation">
-        <a href="#tools" class="hover:text-blue-600 transition-colors">AI Agents</a>
-        <a href="#compare" class="hover:text-blue-600 transition-colors">Compare</a>
-        <a href="#faq" class="hover:text-blue-600 transition-colors">FAQ</a>
+      <a href="/" class="text-xl font-bold text-white flex items-center gap-2" aria-label="DoWithAI Home"><span class="w-2 h-2 rounded-full bg-indigo-500 inline-block"></span>DoWithAI</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400" aria-label="Main navigation">
+        <a href="#tools" class="hover:text-indigo-400 transition-colors">AI Agents</a>
+        <a href="#compare" class="hover:text-indigo-400 transition-colors">Compare</a>
+        <a href="#faq" class="hover:text-indigo-400 transition-colors">FAQ</a>
       </nav>
-      <a href="#cta" class="hidden md:inline-flex items-center px-5 py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 btn-transition">
+      <a href="#cta" class="hidden md:inline-flex items-center px-5 py-2.5 gradient-cta text-white text-sm font-semibold rounded-xl">
         Browse AI Tools
       </a>
-      <button id="menu-btn" class="md:hidden p-2 text-slate-700" aria-label="Toggle menu" aria-expanded="false">
+      <button id="menu-btn" class="md:hidden p-2 text-slate-300" aria-label="Toggle menu" aria-expanded="false">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
     <div id="mobile-menu" class="mobile-menu">
-      <a href="#tools" class="py-4 text-lg font-semibold text-slate-800 border-b border-slate-100">AI Agents</a>
-      <a href="#compare" class="py-4 text-lg font-semibold text-slate-800 border-b border-slate-100">Compare</a>
-      <a href="#faq" class="py-4 text-lg font-semibold text-slate-800 border-b border-slate-100">FAQ</a>
-      <a href="#cta" class="mt-4 inline-flex items-center justify-center px-5 py-3 bg-blue-600 text-white font-semibold rounded-lg">Browse AI Tools</a>
+      <a href="#tools" class="py-4 text-lg font-semibold text-white border-b border-white/5">AI Agents</a>
+      <a href="#compare" class="py-4 text-lg font-semibold text-white border-b border-white/5">Compare</a>
+      <a href="#faq" class="py-4 text-lg font-semibold text-white border-b border-white/5">FAQ</a>
+      <a href="#cta" class="mt-4 inline-flex items-center justify-center px-5 py-3 gradient-cta text-white font-semibold rounded-xl">Browse AI Tools</a>
     </div>
   </header>
 
   <main id="main-content">
 
     <!-- ====== Section 01: Hero ====== -->
-    <section class="bg-gradient-to-br from-slate-900 to-[#1e3a5f] text-white overflow-hidden">
-      <div class="max-w-container mx-auto px-6 py-20 md:py-28 lg:py-32 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+    <section class="hero-section text-white overflow-hidden">
+      <div class="max-w-container mx-auto px-6 py-24 md:py-32 lg:py-36 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         <div class="flex-1 text-center lg:text-left">
-          <h1 class="text-[36px] md:text-[52px] font-bold leading-[1.1] tracking-[-0.02em] mb-6">
-            Let AI Do the Work,<br>Not Just the Talking.
+          <p class="text-sm font-semibold tracking-widest text-indigo-400 uppercase mb-4">DoWithAI</p>
+          <h1 class="text-[42px] md:text-[56px] font-bold leading-[1.08] tracking-[-0.02em] mb-6 text-white">
+            Let AI Do the Work,<br><span class="bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">Not Just the Talking.</span>
           </h1>
-          <p class="text-lg md:text-xl text-slate-300 leading-relaxed mb-8 max-w-[560px]">
+          <p class="text-lg md:text-xl text-slate-400 leading-relaxed mb-8 max-w-[560px]">
             We curate AI agents that actually execute tasks — not chatbots that reply one line at a time, but tools that plan steps, operate browsers, gather research, and deliver finished work.
           </p>
           <div class="flex flex-col items-center lg:items-start gap-3">
-            <a href="#cta" class="inline-flex items-center px-8 py-3.5 bg-blue-600 text-white text-base font-semibold rounded-lg hover:bg-blue-700 btn-transition">
+            <a href="#cta" class="inline-flex items-center px-6 py-3 gradient-cta text-white text-base font-semibold rounded-xl">
               Find Your AI Tool
               <svg class="ml-2" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="#cases" class="text-slate-400 hover:text-white font-medium text-sm transition-colors">
+            <a href="#cases" class="text-slate-400 hover:text-indigo-400 font-medium text-sm transition-colors">
               See real examples first →
             </a>
           </div>
           <p class="mt-8 text-sm text-slate-400 tracking-wide">Browser Automation · Research · Task Execution</p>
         </div>
         <div class="flex-1 relative hidden lg:flex justify-center items-center h-[320px]">
-          <div class="hero-card-1 absolute w-48 bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-4 shadow-lg">
-            <div class="flex items-center gap-2 mb-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10"/></svg><span class="text-sm font-semibold text-blue-200">Browser Agents</span></div>
-            <div class="h-2 w-3/4 bg-white/20 rounded mb-2"></div><div class="h-2 w-1/2 bg-white/10 rounded"></div>
+          <div class="hero-card-1 absolute w-48 bg-white/[0.03] backdrop-blur border border-white/[0.06] rounded-2xl p-4 shadow-lg">
+            <div class="flex items-center gap-2 mb-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10"/></svg><span class="text-sm font-semibold text-indigo-200">Browser Agents</span></div>
+            <div class="h-2 w-3/4 bg-white/[0.08] rounded mb-2"></div><div class="h-2 w-1/2 bg-white/[0.04] rounded"></div>
           </div>
-          <div class="hero-card-2 absolute w-48 bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-4 shadow-lg">
-            <div class="flex items-center gap-2 mb-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg><span class="text-sm font-semibold text-green-200">Research Agents</span></div>
-            <div class="h-2 w-full bg-white/20 rounded mb-2"></div><div class="h-2 w-2/3 bg-white/10 rounded"></div>
+          <div class="hero-card-2 absolute w-48 bg-white/[0.04] backdrop-blur border border-white/[0.08] rounded-2xl p-4 shadow-lg">
+            <div class="flex items-center gap-2 mb-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg><span class="text-sm font-semibold text-blue-200">Research Agents</span></div>
+            <div class="h-2 w-full bg-white/[0.08] rounded mb-2"></div><div class="h-2 w-2/3 bg-white/[0.04] rounded"></div>
           </div>
-          <div class="hero-card-3 absolute w-48 bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-4 shadow-lg">
+          <div class="hero-card-3 absolute w-48 bg-white/[0.03] backdrop-blur border border-white/[0.06] rounded-2xl p-4 shadow-lg">
             <div class="flex items-center gap-2 mb-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span class="text-sm font-semibold text-purple-200">Task Agents</span></div>
-            <div class="h-2 w-5/6 bg-white/20 rounded mb-2"></div><div class="h-2 w-1/3 bg-white/10 rounded"></div>
+            <div class="h-2 w-5/6 bg-white/[0.08] rounded mb-2"></div><div class="h-2 w-1/3 bg-white/[0.04] rounded"></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ====== Section 02: Pain Points ====== -->
-    <section class="bg-white">
-      <div class="max-w-container mx-auto px-6 py-20 md:py-24">
-        <h2 class="text-[28px] md:text-[36px] font-bold text-slate-900 leading-[1.2] tracking-[-0.01em] mb-10">Sound Familiar?</h2>
-        <ul class="space-y-4 max-w-[680px]">
-          <li class="flex items-start gap-3 text-lg text-slate-700 leading-relaxed">
-            <span class="w-2 h-2 rounded-full bg-amber-500 mt-2.5 flex-shrink-0"></span>
-            You open five dashboards every day — clicking buttons, filling forms, copy-pasting data from one page to another.
-          </li>
-          <li class="flex items-start gap-3 text-lg text-slate-700 leading-relaxed">
-            <span class="w-2 h-2 rounded-full bg-amber-500 mt-2.5 flex-shrink-0"></span>
-            Researching a topic means opening dozens of tabs, reading everything yourself, then spending half a day compiling notes.
-          </li>
-          <li class="flex items-start gap-3 text-lg text-slate-700 leading-relaxed">
-            <span class="w-2 h-2 rounded-full bg-amber-500 mt-2.5 flex-shrink-0"></span>
-            ChatGPT replies with text — but the actual steps you need done? Opening a page, filling a form, pulling data? It can't do any of that.
-          </li>
-          <li class="flex items-start gap-3 text-lg text-slate-700 leading-relaxed">
-            <span class="w-2 h-2 rounded-full bg-amber-500 mt-2.5 flex-shrink-0"></span>
-            Every time you hear about a new AI tool, you sign up, poke around, and still have no idea where to start.
-          </li>
-        </ul>
-        <p class="mt-8 text-lg font-semibold text-slate-800">
-          It's not that you're using AI wrong. It's that you haven't found AI that <em>acts</em> — not just talks.
-        </p>
+    <section class="section-card relative overflow-hidden">
+      <div class="max-w-container mx-auto px-6 py-20 md:py-24 flex flex-col lg:flex-row items-start gap-12">
+        <div class="flex-1">
+          <h2 class="text-[28px] md:text-[36px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-10">Sound Familiar?</h2>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3 text-lg text-slate-400 leading-relaxed">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 mt-2.5 flex-shrink-0"></span>
+              You open five dashboards every day — clicking buttons, filling forms, copy-pasting data from one page to another.
+            </li>
+            <li class="flex items-start gap-3 text-lg text-slate-400 leading-relaxed">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 mt-2.5 flex-shrink-0"></span>
+              Researching a topic means opening dozens of tabs, reading everything yourself, then spending half a day compiling notes.
+            </li>
+            <li class="flex items-start gap-3 text-lg text-slate-400 leading-relaxed">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 mt-2.5 flex-shrink-0"></span>
+              ChatGPT replies with text — but the actual steps you need done? Opening a page, filling a form, pulling data? It can't do any of that.
+            </li>
+            <li class="flex items-start gap-3 text-lg text-slate-400 leading-relaxed">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 mt-2.5 flex-shrink-0"></span>
+              Every time you hear about a new AI tool, you sign up, poke around, and still have no idea where to start.
+            </li>
+          </ul>
+          <p class="mt-8 text-lg font-semibold text-slate-200">
+            It's not that you're using AI wrong. It's that you haven't found AI that <em class="text-indigo-400">acts</em> — not just talks.
+          </p>
+        </div>
+        <div class="hidden lg:flex flex-1 justify-center items-center relative self-stretch">
+          <!-- Glow background -->
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-indigo-500/[0.03] blur-3xl"></div>
+          <!-- Large radar/nodes SVG -->
+          <svg width="420" height="420" viewBox="0 0 420 420" fill="none" class="relative z-10">
+            <!-- Outer rings -->
+            <circle cx="210" cy="210" r="190" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="8 6" fill="none"/>
+            <circle cx="210" cy="210" r="150" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="6 4" fill="none"/>
+            <circle cx="210" cy="210" r="105" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none"/>
+            <circle cx="210" cy="210" r="55" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="none"/>
+            <!-- Center node -->
+            <circle cx="210" cy="210" r="10" fill="#6366F1" opacity="0.7"/>
+            <circle cx="210" cy="210" r="10" fill="#6366F1" opacity="0.3"><animate attributeName="r" values="10;18;10" dur="3s" repeatCount="indefinite"/></circle>
+            <!-- Satellite nodes -->
+            <circle cx="310" cy="140" r="6" fill="#a5b4fc" opacity="0.5"/>
+            <circle cx="320" cy="260" r="5" fill="#6366F1" opacity="0.4"/>
+            <circle cx="150" cy="310" r="6" fill="#a5b4fc" opacity="0.45"/>
+            <circle cx="80" cy="240" r="5" fill="#6366F1" opacity="0.4"/>
+            <circle cx="90" cy="120" r="6" fill="#a5b4fc" opacity="0.5"/>
+            <circle cx="260" cy="340" r="4" fill="#6366F1" opacity="0.35"/>
+            <circle cx="370" cy="190" r="4" fill="#a5b4fc" opacity="0.3"/>
+            <circle cx="40" cy="170" r="4" fill="#6366F1" opacity="0.3"/>
+            <!-- Connecting lines -->
+            <line x1="210" y1="210" x2="310" y2="140" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+            <line x1="210" y1="210" x2="320" y2="260" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <line x1="210" y1="210" x2="150" y2="310" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+            <line x1="210" y1="210" x2="80" y2="240" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <line x1="210" y1="210" x2="90" y2="120" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+            <line x1="210" y1="210" x2="370" y2="190" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="210" y1="210" x2="40" y2="170" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <!-- Cross-lines between satellites -->
+            <line x1="310" y1="140" x2="320" y2="260" stroke="rgba(99,102,241,0.06)" stroke-width="0.5"/>
+            <line x1="150" y1="310" x2="80" y2="240" stroke="rgba(99,102,241,0.06)" stroke-width="0.5"/>
+            <line x1="90" y1="120" x2="310" y2="140" stroke="rgba(99,102,241,0.06)" stroke-width="0.5"/>
+            <!-- Data dots scattered -->
+            <circle cx="180" cy="100" r="1.5" fill="rgba(255,255,255,0.2)"/>
+            <circle cx="350" cy="150" r="1.5" fill="rgba(255,255,255,0.15)"/>
+            <circle cx="340" cy="300" r="1.5" fill="rgba(255,255,255,0.15)"/>
+            <circle cx="60" cy="300" r="1.5" fill="rgba(255,255,255,0.2)"/>
+            <circle cx="50" cy="100" r="1.5" fill="rgba(255,255,255,0.15)"/>
+            <circle cx="280" cy="80" r="1.5" fill="rgba(255,255,255,0.12)"/>
+            <circle cx="130" cy="380" r="1.5" fill="rgba(255,255,255,0.12)"/>
+          </svg>
+        </div>
       </div>
     </section>
 
     <!-- ====== Section 03: Quick Nav ====== -->
-    <section class="bg-white border-t border-slate-100">
+    <section class="section-dark border-t border-subtle">
       <div class="max-w-container mx-auto px-6 py-12">
-        <h2 class="text-[28px] md:text-[36px] font-bold text-slate-900 leading-[1.2] tracking-[-0.01em] mb-8">What Do You Want AI to Handle?</h2>
-        <p class="text-slate-500 mb-8">Click to jump to the section that matters to you.</p>
-        <div class="grid md:grid-cols-3 gap-4">
-          <a href="#browser-agents" class="card-hover flex flex-col items-start gap-3 p-8 rounded-2xl border border-slate-200 bg-white text-left group">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            <span class="text-xl font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">Automate Web Tasks</span>
-            <span class="text-sm text-slate-500">Fill forms · Log into backends · Bulk data collection · Multi-step clicks</span>
+        <h2 class="text-[28px] md:text-[36px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-8">What Do You Want AI to Handle?</h2>
+        <p class="text-slate-400 mb-8">Click to jump to the section that matters to you.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a href="#browser-agents" class="quick-nav-card flex flex-col items-start gap-3 p-8 rounded-2xl text-left group">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <span class="text-xl font-semibold text-white group-hover:text-indigo-400 transition-colors">Automate Web Tasks</span>
+            <span class="text-sm text-slate-400">Fill forms · Log into backends · Bulk data collection · Multi-step clicks</span>
           </a>
-          <a href="#research-agents" class="card-hover flex flex-col items-start gap-3 p-8 rounded-2xl border border-slate-200 bg-white text-left group">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-            <span class="text-xl font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">Research & Write Reports</span>
-            <span class="text-sm text-slate-500">Market analysis · Competitive research · Industry trends · Literature review</span>
+          <a href="#research-agents" class="quick-nav-card flex flex-col items-start gap-3 p-8 rounded-2xl text-left group">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            <span class="text-xl font-semibold text-white group-hover:text-indigo-400 transition-colors">Research & Write Reports</span>
+            <span class="text-sm text-slate-400">Market analysis · Competitive research · Industry trends · Literature review</span>
           </a>
-          <a href="#task-agents" class="card-hover flex flex-col items-start gap-3 p-8 rounded-2xl border border-slate-200 bg-white text-left group">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            <span class="text-xl font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">Write Code & Execute Tasks</span>
-            <span class="text-sm text-slate-500">Fix bugs · Run tests · Ship small features · Requirements → PR</span>
+          <a href="#task-agents" class="quick-nav-card flex flex-col items-start gap-3 p-8 rounded-2xl text-left group">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <span class="text-xl font-semibold text-white group-hover:text-indigo-400 transition-colors">Write Code & Execute Tasks</span>
+            <span class="text-sm text-slate-400">Fix bugs · Run tests · Ship small features · Requirements → PR</span>
+          </a>
+          <a href="#cases" class="quick-nav-card flex flex-col items-start gap-3 p-8 rounded-2xl text-left group">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span class="text-xl font-semibold text-white group-hover:text-indigo-400 transition-colors">See Real Results</span>
+            <span class="text-sm text-slate-400">Real case studies · Time savings · Before & after · Proven workflows</span>
           </a>
         </div>
       </div>
     </section>
 
     <!-- ====== Section 04: Tool Categories ====== -->
-    <section id="tools" class="bg-slate-50">
+    <section id="tools" class="section-card">
       <div class="max-w-container mx-auto px-6 py-20 md:py-24">
-        <h2 class="text-[28px] md:text-[36px] font-bold text-slate-900 leading-[1.2] tracking-[-0.01em] mb-4">AI Agents, Organized by What They Actually Do</h2>
-        <p class="text-slate-500 mb-12 max-w-[640px]">No jargon like "LLM-based" or "multi-agent frameworks." Just one question: what do you want AI to handle for you?</p>
+        <h2 class="text-[28px] md:text-[36px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-4">AI Agents, Organized by What They Actually Do</h2>
+        <p class="text-slate-400 mb-12 max-w-[640px]">No jargon like "LLM-based" or "multi-agent frameworks." Just one question: what do you want AI to handle for you?</p>
 
         <!-- Browser Agents -->
         <div id="browser-agents" class="mb-16">
           <div class="flex items-center gap-3 mb-6">
-            <span class="px-3 py-1 text-sm font-medium rounded-full bg-blue-100 text-blue-800">Browser Agents</span>
-            <span class="text-sm text-slate-500">Operate real browsers — click, fill, navigate, collect</span>
+            <span class="px-3 py-1 text-sm font-medium rounded-full badge-browser">Browser Agents</span>
+            <span class="text-sm text-slate-400">Operate real browsers — click, fill, navigate, collect</span>
           </div>
           <div class="grid md:grid-cols-2 gap-6">
             <!-- OpenClaw -->
-            <div class="card-hover bg-white rounded-2xl border border-slate-200 p-6 md:p-8">
-              <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full bg-blue-100 text-blue-800 mb-3">Browser Agent</span>
-              <h3 class="text-2xl font-semibold text-slate-900 mb-2">OpenClaw</h3>
-              <p class="text-slate-600 mb-4 leading-relaxed">AI-powered browser automation that completes multi-step web tasks — like a tireless digital operator at your desk.</p>
-              <p class="text-sm text-slate-500 mb-4"><strong class="text-slate-700">Best for:</strong> Operations, growth, data analysts</p>
+            <div class="tool-card rounded-2xl p-6 md:p-8">
+              <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full badge-browser mb-3">Browser Agent</span>
+              <h3 class="text-2xl font-semibold text-white mb-2">OpenClaw</h3>
+              <p class="text-slate-400 mb-4 leading-relaxed">AI-powered browser automation that completes multi-step web tasks — like a tireless digital operator at your desk.</p>
+              <p class="text-sm text-slate-400 mb-4"><strong class="text-slate-200">Best for:</strong> Operations, growth, data analysts</p>
               <ul class="space-y-2 mb-4">
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Auto form-filling and submission</li>
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Cross-page navigation and data collection</li>
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-step UI workflow automation</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Auto form-filling and submission</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Cross-page navigation and data collection</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-step UI workflow automation</li>
               </ul>
               <ul class="space-y-1 mb-5">
-                <li class="flex items-center gap-2 text-xs text-slate-500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Requires desktop browser environment</li>
-                <li class="flex items-center gap-2 text-xs text-slate-500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Initial configuration needed for complex workflows</li>
+                <li class="flex items-center gap-2 text-xs text-slate-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Requires desktop browser environment</li>
+                <li class="flex items-center gap-2 text-xs text-slate-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Initial configuration needed for complex workflows</li>
               </ul>
-              <a href="#" class="text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">Learn more →</a>
+              <a href="#" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">Learn more →</a>
             </div>
             <!-- Hermes Agent -->
-            <div class="card-hover bg-white rounded-2xl border border-slate-200 p-6 md:p-8">
-              <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full bg-blue-100 text-blue-800 mb-3">Browser Agent</span>
-              <h3 class="text-2xl font-semibold text-slate-900 mb-2">Hermes Agent</h3>
-              <p class="text-slate-600 mb-4 leading-relaxed">A structured executor for complex web workflows — handles multi-level navigation, conditional branching, and dynamic content.</p>
-              <p class="text-sm text-slate-500 mb-4"><strong class="text-slate-700">Best for:</strong> Enterprise ops, SaaS power users</p>
+            <div class="tool-card rounded-2xl p-6 md:p-8">
+              <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full badge-browser mb-3">Browser Agent</span>
+              <h3 class="text-2xl font-semibold text-white mb-2">Hermes Agent</h3>
+              <p class="text-slate-400 mb-4 leading-relaxed">A structured executor for complex web workflows — handles multi-level navigation, conditional branching, and dynamic content.</p>
+              <p class="text-sm text-slate-400 mb-4"><strong class="text-slate-200">Best for:</strong> Enterprise ops, SaaS power users</p>
               <ul class="space-y-2 mb-4">
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-level back-office navigation</li>
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Conditional branching workflows</li>
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Dynamic content interaction</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-level back-office navigation</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Conditional branching workflows</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Dynamic content interaction</li>
               </ul>
               <ul class="space-y-1 mb-5">
-                <li class="flex items-center gap-2 text-xs text-slate-500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Higher configuration threshold — engineering-oriented</li>
+                <li class="flex items-center gap-2 text-xs text-slate-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Higher configuration threshold — engineering-oriented</li>
               </ul>
-              <a href="#" class="text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">Learn more →</a>
+              <a href="#" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">Learn more →</a>
             </div>
           </div>
           <div class="mt-6 text-right">
-            <a href="#" class="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">View all 4 Browser Agents →</a>
+            <a href="#browser-agents" class="text-sm font-medium text-slate-400 hover:text-indigo-400 transition-colors">View all 4 Browser Agents →</a>
           </div>
         </div>
 
         <!-- Research Agents -->
         <div id="research-agents" class="mb-16">
           <div class="flex items-center gap-3 mb-6">
-            <span class="px-3 py-1 text-sm font-medium rounded-full bg-emerald-100 text-emerald-800">Research Agents</span>
-            <span class="text-sm text-slate-500">Search, read, compare, and compile — from a single question to a finished report</span>
+            <span class="px-3 py-1 text-sm font-medium rounded-full badge-research">Research Agents</span>
+            <span class="text-sm text-slate-400">Search, read, compare, and compile — from a single question to a finished report</span>
           </div>
           <div class="grid md:grid-cols-2 gap-6">
             <!-- Perplexity Deep Research -->
-            <div class="card-hover bg-white rounded-2xl border border-slate-200 p-6 md:p-8">
-              <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full bg-emerald-100 text-emerald-800 mb-3">Research Agent</span>
-              <h3 class="text-2xl font-semibold text-slate-900 mb-2">Perplexity Deep Research</h3>
-              <p class="text-slate-600 mb-4 leading-relaxed">Search + reasoning in one research agent. Multi-source search, viewpoint comparison, structured summaries — from question to report.</p>
-              <p class="text-sm text-slate-500 mb-4"><strong class="text-slate-700">Best for:</strong> Analysts, founders, investors</p>
+            <div class="tool-card rounded-2xl p-6 md:p-8">
+              <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full badge-research mb-3">Research Agent</span>
+              <h3 class="text-2xl font-semibold text-white mb-2">Perplexity Deep Research</h3>
+              <p class="text-slate-400 mb-4 leading-relaxed">Search + reasoning in one research agent. Multi-source search, viewpoint comparison, structured summaries — from question to report.</p>
+              <p class="text-sm text-slate-400 mb-4"><strong class="text-slate-200">Best for:</strong> Analysts, founders, investors</p>
               <ul class="space-y-2 mb-4">
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-source search and synthesis</li>
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Cross-source viewpoint comparison</li>
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Structured reports with cited sources</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-source search and synthesis</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Cross-source viewpoint comparison</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Structured reports with cited sources</li>
               </ul>
               <ul class="space-y-1 mb-5">
-                <li class="flex items-center gap-2 text-xs text-slate-500">Extremely low barrier — open in browser and go</li>
+                <li class="flex items-center gap-2 text-xs text-slate-400">Extremely low barrier — open in browser and go</li>
               </ul>
-              <a href="#" class="text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">Learn more →</a>
+              <a href="#" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">Learn more →</a>
             </div>
             <!-- OpenAI Deep Research -->
-            <div class="card-hover bg-white rounded-2xl border border-slate-200 p-6 md:p-8">
-              <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full bg-emerald-100 text-emerald-800 mb-3">Research Agent</span>
-              <h3 class="text-2xl font-semibold text-slate-900 mb-2">OpenAI Deep Research</h3>
-              <p class="text-slate-600 mb-4 leading-relaxed">Autonomous multi-source retrieval, reading, and synthesis. Strong reasoning chain for reliable, comprehensive output.</p>
-              <p class="text-sm text-slate-500 mb-4"><strong class="text-slate-700">Best for:</strong> Market research, strategy analysis</p>
+            <div class="tool-card rounded-2xl p-6 md:p-8">
+              <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full badge-research mb-3">Research Agent</span>
+              <h3 class="text-2xl font-semibold text-white mb-2">OpenAI Deep Research</h3>
+              <p class="text-slate-400 mb-4 leading-relaxed">Autonomous multi-source retrieval, reading, and synthesis. Strong reasoning chain for reliable, comprehensive output.</p>
+              <p class="text-sm text-slate-400 mb-4"><strong class="text-slate-200">Best for:</strong> Market research, strategy analysis</p>
               <ul class="space-y-2 mb-4">
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Strong multi-step reasoning</li>
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Reliable comprehensive synthesis</li>
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Autonomous retrieval and reading</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Strong multi-step reasoning</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Reliable comprehensive synthesis</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Autonomous retrieval and reading</li>
               </ul>
               <ul class="space-y-1 mb-5">
-                <li class="flex items-center gap-2 text-xs text-slate-500">Low barrier — subscription required</li>
+                <li class="flex items-center gap-2 text-xs text-slate-400">Low barrier — subscription required</li>
               </ul>
-              <a href="#" class="text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">Learn more →</a>
+              <a href="#" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">Learn more →</a>
             </div>
           </div>
           <div class="mt-6 text-right">
-            <a href="#" class="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">View all Research Agents →</a>
+            <a href="#research-agents" class="text-sm font-medium text-slate-400 hover:text-indigo-400 transition-colors">View all Research Agents →</a>
           </div>
         </div>
 
         <!-- Task / Coding Agents -->
         <div id="task-agents">
           <div class="flex items-center gap-3 mb-6">
-            <span class="px-3 py-1 text-sm font-medium rounded-full bg-purple-100 text-purple-800">Task Agents</span>
-            <span class="text-sm text-slate-500">Read codebases, fix bugs, run tests, submit PRs — complete dev tasks</span>
+            <span class="px-3 py-1 text-sm font-medium rounded-full badge-task">Task Agents</span>
+            <span class="text-sm text-slate-400">Read codebases, fix bugs, run tests, submit PRs — complete dev tasks</span>
           </div>
           <div class="grid md:grid-cols-2 gap-6">
             <!-- Devin -->
-            <div class="card-hover bg-white rounded-2xl border border-slate-200 p-6 md:p-8">
-              <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full bg-purple-100 text-purple-800 mb-3">Task Agent</span>
-              <h3 class="text-2xl font-semibold text-slate-900 mb-2">Devin</h3>
-              <p class="text-slate-600 mb-4 leading-relaxed">An AI software engineer that independently completes dev tasks — write code, run tests, debug, deliver.</p>
-              <p class="text-sm text-slate-500 mb-4"><strong class="text-slate-700">Best for:</strong> Developers, engineering teams</p>
+            <div class="tool-card rounded-2xl p-6 md:p-8">
+              <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full badge-task mb-3">Task Agent</span>
+              <h3 class="text-2xl font-semibold text-white mb-2">Devin</h3>
+              <p class="text-slate-400 mb-4 leading-relaxed">An AI software engineer that independently completes dev tasks — write code, run tests, debug, deliver.</p>
+              <p class="text-sm text-slate-400 mb-4"><strong class="text-slate-200">Best for:</strong> Developers, engineering teams</p>
               <ul class="space-y-2 mb-4">
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Read codebase → locate issue → fix → test → PR</li>
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Independent task delivery</li>
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Full debugging and testing cycle</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Read codebase → locate issue → fix → test → PR</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Independent task delivery</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Full debugging and testing cycle</li>
               </ul>
               <ul class="space-y-1 mb-5">
-                <li class="flex items-center gap-2 text-xs text-slate-500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>High barrier — paid product, dev knowledge required</li>
+                <li class="flex items-center gap-2 text-xs text-slate-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>High barrier — paid product, dev knowledge required</li>
               </ul>
-              <a href="#" class="text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">Learn more →</a>
+              <a href="#" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">Learn more →</a>
             </div>
             <!-- Cursor Agent -->
-            <div class="card-hover bg-white rounded-2xl border border-slate-200 p-6 md:p-8">
-              <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full bg-purple-100 text-purple-800 mb-3">Task Agent</span>
-              <h3 class="text-2xl font-semibold text-slate-900 mb-2">Cursor Agent</h3>
-              <p class="text-slate-600 mb-4 leading-relaxed">In-editor code execution agent — inline generation, multi-step editing, context-aware refactoring.</p>
-              <p class="text-sm text-slate-500 mb-4"><strong class="text-slate-700">Best for:</strong> Developers, fast prototypers</p>
+            <div class="tool-card rounded-2xl p-6 md:p-8">
+              <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full badge-task mb-3">Task Agent</span>
+              <h3 class="text-2xl font-semibold text-white mb-2">Cursor Agent</h3>
+              <p class="text-slate-400 mb-4 leading-relaxed">In-editor code execution agent — inline generation, multi-step editing, context-aware refactoring.</p>
+              <p class="text-sm text-slate-400 mb-4"><strong class="text-slate-200">Best for:</strong> Developers, fast prototypers</p>
               <ul class="space-y-2 mb-4">
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Inline code generation</li>
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-step editing</li>
-                <li class="flex items-center gap-2 text-sm text-slate-600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Context-aware refactoring</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Inline code generation</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Multi-step editing</li>
+                <li class="flex items-center gap-2 text-sm text-slate-400"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Context-aware refactoring</li>
               </ul>
               <ul class="space-y-1 mb-5">
-                <li class="flex items-center gap-2 text-xs text-slate-500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Medium barrier — dev fundamentals required</li>
+                <li class="flex items-center gap-2 text-xs text-slate-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Medium barrier — dev fundamentals required</li>
               </ul>
-              <a href="#" class="text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">Learn more →</a>
+              <a href="#" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">Learn more →</a>
             </div>
           </div>
           <div class="mt-6 text-right">
-            <a href="#" class="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">View all Task Agents →</a>
+            <a href="#task-agents" class="text-sm font-medium text-slate-400 hover:text-indigo-400 transition-colors">View all Task Agents →</a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ====== Section 05: Case Studies ====== -->
-    <section id="cases" class="bg-white">
+    <section id="cases" class="section-card">
       <div class="max-w-container mx-auto px-6 py-20 md:py-24">
-        <h2 class="text-[28px] md:text-[36px] font-bold text-slate-900 leading-[1.2] tracking-[-0.01em] mb-4">Don't Take Our Word for It</h2>
-        <p class="text-slate-500 mb-12 max-w-[640px]">Real scenarios. Real time savings. This is what "AI that acts" actually looks like.</p>
+        <h2 class="text-[28px] md:text-[36px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-4">Don't Take Our Word for It</h2>
+        <p class="text-slate-400 mb-12">Real scenarios. Real time savings. This is what "AI that acts" actually looks like.</p>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-slate-50 rounded-2xl p-6 md:p-8">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5" class="mb-4"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            <p class="text-sm font-semibold text-amber-600 mb-2">Browser Automation</p>
-            <p class="text-slate-800 font-semibold mb-3">An ops manager automated daily price & inventory tracking across 5 competitor sites.</p>
-            <p class="text-slate-600 text-sm mb-3 leading-relaxed">Previously: manual copy-paste across sites — 40 minutes per day. With OpenClaw: agent auto-opens each site → logs into backends → paginates → collects data → compiles into a spreadsheet.</p>
-            <p class="text-lg font-bold text-amber-500"><span class="text-slate-400 line-through mr-2">40 min</span> → 10 min</p>
-            <p class="text-xs text-slate-500 mt-1">Fully automated — no human monitoring needed</p>
+          <div class="bg-[#242424] border border-white/5 rounded-2xl p-6 md:p-8 hover:border-purple-500/30 hover:-translate-y-2 hover:shadow-[0_16px_48px_rgba(0,0,0,0.4),_0_0_40px_rgba(138,43,226,0.06)] transition-all duration-200">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <p class="text-sm font-semibold text-amber-300 mb-2">Browser Automation</p>
+            <p class="text-slate-100 font-semibold mb-3">An ops manager automated daily price & inventory tracking across 5 competitor sites.</p>
+            <p class="text-slate-400 text-sm mb-3 leading-relaxed">Previously: manual copy-paste across sites — 40 minutes per day. With OpenClaw: agent auto-opens each site → logs into backends → paginates → collects data → compiles into a spreadsheet.</p>
+            <div class="flex items-baseline gap-2 mt-auto pt-3 border-t border-white/5">
+              <span class="text-slate-400 text-xs line-through">40 min</span>
+              <span class="text-amber-400 font-bold">→ 10 min</span>
+              <span class="text-xs text-slate-500 ml-auto">Fully automated</span>
+            </div>
           </div>
-          <div class="bg-slate-50 rounded-2xl p-6 md:p-8">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5" class="mb-4"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            <p class="text-sm font-semibold text-amber-600 mb-2">Deep Research</p>
-            <p class="text-slate-800 font-semibold mb-3">An investor researched "2026 AI agent funding trends" — from question to cited report.</p>
-            <p class="text-slate-600 text-sm mb-3 leading-relaxed">Previously: open 30+ webpages, read, take notes, write — 4+ hours. With Perplexity Deep Research: one research question → agent searches 50+ sources → compares viewpoints → delivers a structured report with citations.</p>
-            <p class="text-lg font-bold text-amber-500"><span class="text-slate-400 line-through mr-2">4 hours</span> → 20 min</p>
-            <p class="text-xs text-slate-500 mt-1">From question to report — all sources cited</p>
+          <div class="bg-[#242424] border border-white/5 rounded-2xl p-6 md:p-8 hover:border-purple-500/30 hover:-translate-y-2 hover:shadow-[0_16px_48px_rgba(0,0,0,0.4),_0_0_40px_rgba(138,43,226,0.06)] transition-all duration-200">
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            </div>
+            <p class="text-sm font-semibold text-blue-300 mb-2">Deep Research</p>
+            <p class="text-slate-100 font-semibold mb-3">An investor researched "2026 AI agent funding trends" — from question to cited report.</p>
+            <p class="text-slate-400 text-sm mb-3 leading-relaxed">Previously: open 30+ webpages, read, take notes, write — 4+ hours. With Perplexity Deep Research: one research question → agent searches 50+ sources → compares viewpoints → delivers a structured report with citations.</p>
+            <div class="flex items-baseline gap-2 mt-auto pt-3 border-t border-white/5">
+              <span class="text-slate-400 text-xs line-through">4 hours</span>
+              <span class="text-blue-400 font-bold">→ 20 min</span>
+              <span class="text-xs text-slate-500 ml-auto">All sources cited</span>
+            </div>
           </div>
-          <div class="bg-slate-50 rounded-2xl p-6 md:p-8">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5" class="mb-4"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            <p class="text-sm font-semibold text-amber-600 mb-2">Autonomous Coding</p>
-            <p class="text-slate-800 font-semibold mb-3">A developer fixed an open-source bug on a Saturday without setting up a dev environment.</p>
-            <p class="text-slate-600 text-sm mb-3 leading-relaxed">Previously: clone repo → set up env → read code → debug → fix → test → PR = half a day. With Devin: describe the issue → agent reads codebase → locates the problem → edits → runs tests → submits PR.</p>
-            <p class="text-lg font-bold text-amber-500"><span class="text-slate-400 line-through mr-2">Half day setup</span> → Just review</p>
-            <p class="text-xs text-slate-500 mt-1">Developer only reviews the final result</p>
+          <div class="bg-[#242424] border border-white/5 rounded-2xl p-6 md:p-8 hover:border-purple-500/30 hover:-translate-y-2 hover:shadow-[0_16px_48px_rgba(0,0,0,0.4),_0_0_40px_rgba(138,43,226,0.06)] transition-all duration-200">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <p class="text-sm font-semibold text-purple-300 mb-2">Autonomous Coding</p>
+            <p class="text-slate-100 font-semibold mb-3">A developer fixed an open-source bug on a Saturday without setting up a dev environment.</p>
+            <p class="text-slate-400 text-sm mb-3 leading-relaxed">Previously: clone repo → set up env → read code → debug → fix → test → PR = half a day. With Devin: describe the issue → agent reads codebase → locates the problem → edits → runs tests → submits PR.</p>
+            <div class="flex items-baseline gap-2 mt-auto pt-3 border-t border-white/5">
+              <span class="text-slate-400 text-xs line-through">Half day setup</span>
+              <span class="text-purple-400 font-bold">→ Just review</span>
+              <span class="text-xs text-slate-500 ml-auto">Review only</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ====== Section 06: Barrier Explanation ====== -->
-    <section class="bg-slate-50">
+    <section class="section-dark">
       <div class="max-w-container mx-auto px-6 py-20 md:py-24">
-        <h2 class="text-[28px] md:text-[36px] font-bold text-slate-900 leading-[1.2] tracking-[-0.01em] mb-10">Is This Hard? Will I Figure It Out?</h2>
-        <div class="grid md:grid-cols-3 gap-8 mb-10">
-          <div class="text-left">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" class="mb-4"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">Do I Need to Code?</h3>
-            <p class="text-slate-600 leading-relaxed">Browser and research agents require <strong class="text-slate-800">no coding at all</strong> — you describe what you want in natural language. Task/coding agents are developer-facing and need basic code-reading ability to assess results.</p>
+        <h2 class="text-[28px] md:text-[36px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-10">Is This Hard? Will I Figure It Out?</h2>
+        <div class="flex flex-col lg:flex-row gap-6">
+          <!-- Left: 3 info cards stacked -->
+          <div class="flex-1 space-y-4">
+            <div class="bg-[#242424] border border-white/5 rounded-2xl p-6 flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-1">Do I Need to Code?</h3>
+                <p class="text-slate-400 leading-relaxed text-sm">Browser and research agents require <strong class="text-slate-200">no coding at all</strong> — you describe what you want in natural language. Task/coding agents are developer-facing and need basic code-reading ability to assess results.</p>
+              </div>
+            </div>
+            <div class="bg-[#242424] border border-white/5 rounded-2xl p-6 flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-1">How Fast Can I Start?</h3>
+                <p class="text-slate-400 leading-relaxed text-sm">Research tools (Perplexity, OpenAI Deep Research): open your browser, <strong class="text-slate-200">5 minutes to your first completed task</strong>. Browser tools (OpenClaw): ~15-30 min for initial setup, then reusable. Coding tools require dev environment setup.</p>
+              </div>
+            </div>
+            <div class="bg-[#242424] border border-white/5 rounded-2xl p-6 flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center flex-shrink-0">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-1">What Do I Need to Install?</h3>
+                <p class="text-slate-400 leading-relaxed text-sm"><strong class="text-slate-200">Research:</strong> nothing — browser-based. <strong class="text-slate-200">Browser:</strong> desktop browser environment, some need Docker. <strong class="text-slate-200">Coding:</strong> corresponding editor or dev platform account.</p>
+              </div>
+            </div>
           </div>
-          <div class="text-left">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" class="mb-4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">How Fast Can I Start?</h3>
-            <p class="text-slate-600 leading-relaxed">Research tools (Perplexity, OpenAI Deep Research): open your browser, <strong class="text-slate-800">5 minutes to your first completed task</strong>. Browser tools (OpenClaw): ~15-30 min for initial setup, then reusable. Coding tools require dev environment setup.</p>
+          <!-- Right: honest truth card + reliability note, same card style -->
+          <div class="flex-1 space-y-4">
+            <div class="bg-[#242424] border border-white/5 rounded-2xl p-6 flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-1">Honest Truth About Reliability</h3>
+                <p class="text-slate-400 leading-relaxed text-sm">Complex tasks still benefit from human oversight at key checkpoints. A 10-step task where each step is 95% reliable has an overall success rate of <strong class="text-amber-300">~60%</strong>. Current AI agents can dramatically reduce your hands-on time — but they're not yet at 100% unattended zero-error operation. For high-value tasks, we recommend human-AI collaboration, not full handoff.</p>
+              </div>
+            </div>
+            <div class="bg-[#242424] border border-white/5 rounded-2xl p-6 flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-1">The Good News</h3>
+                <p class="text-slate-400 leading-relaxed text-sm">For well-defined, repeatable tasks — the kind you do every day — AI agents already achieve <strong class="text-indigo-300">excellent reliability</strong>. The key is choosing the right tool for the right task and keeping a human in the loop for critical decisions. Start small, verify results, then scale.</p>
+              </div>
+            </div>
           </div>
-          <div class="text-left">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" class="mb-4"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">What Do I Need to Install?</h3>
-            <p class="text-slate-600 leading-relaxed"><strong class="text-slate-800">Research:</strong> nothing — browser-based. <strong class="text-slate-800">Browser:</strong> desktop browser environment, some need Docker. <strong class="text-slate-800">Coding:</strong> corresponding editor or dev platform account.</p>
-          </div>
-        </div>
-        <div class="bg-amber-50 border-l-4 border-amber-500 rounded-r-lg p-5 max-w-[720px]">
-          <p class="text-sm text-slate-700 leading-relaxed">
-            <strong class="text-slate-900">Honest truth:</strong> Complex tasks still benefit from human oversight at key checkpoints. A 10-step task where each step is 95% reliable has an overall success rate of ~60%. Current AI agents can dramatically reduce your hands-on time — but they're not yet at 100% unattended zero-error operation. For high-value tasks, we recommend human-AI collaboration, not full handoff.
-          </p>
         </div>
       </div>
     </section>
 
     <!-- ====== Section 07: vs Traditional AI ====== -->
-    <section id="compare" class="bg-white">
+    <section id="compare" class="section-dark">
       <div class="max-w-container mx-auto px-6 py-20 md:py-24">
-        <h2 class="text-[28px] md:text-[36px] font-bold text-slate-900 leading-[1.2] tracking-[-0.01em] mb-8">How Is This Different from ChatGPT?</h2>
-        <p class="text-slate-500 mb-10 max-w-[640px]">This is where most people get confused — and the most important thing to understand.</p>
+        <h2 class="text-[28px] md:text-[36px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-4">How Is This Different from ChatGPT?</h2>
+        <p class="text-slate-400 mb-10">This is where most people get confused — and the most important thing to understand.</p>
+
+        <!-- Wide comparison table -->
         <div class="overflow-x-auto mb-10">
-          <table class="w-full max-w-[800px] border-collapse">
+          <table class="w-full border-collapse">
             <thead>
-              <tr class="border-b-2 border-slate-200">
-                <th class="text-left py-3 pr-4 text-sm font-semibold text-slate-500 w-1/4"></th>
-                <th class="text-left py-3 px-4 text-sm font-semibold text-slate-600 bg-slate-50 rounded-t-lg">Traditional AI (ChatGPT)</th>
-                <th class="text-left py-3 px-4 text-sm font-semibold text-blue-700 bg-blue-50 rounded-t-lg">AI Agent</th>
+              <tr class="border-b border-white/10">
+                <th class="text-left py-4 pr-6 text-sm font-semibold text-slate-400 w-[28%]"></th>
+                <th class="text-left py-4 px-6 text-sm font-semibold text-slate-400 w-[36%] rounded-t-xl bg-white/[0.02]">Traditional AI (ChatGPT)</th>
+                <th class="text-left py-4 px-6 text-sm font-semibold text-indigo-300 w-[36%] rounded-t-xl bg-indigo-500/[0.06]">AI Agent</th>
               </tr>
             </thead>
             <tbody class="text-sm">
-              <tr class="border-b border-slate-100">
-                <td class="py-3 pr-4 font-medium text-slate-700">How it works</td>
-                <td class="py-3 px-4 text-slate-600 bg-slate-50">You ask, it answers. Conversation ends.</td>
-                <td class="py-3 px-4 text-slate-700 bg-blue-50/50">You set a goal. It plans → executes → self-corrects → delivers.</td>
+              <tr class="border-b border-white/[0.04]">
+                <td class="py-5 pr-6 font-semibold text-slate-200">How it works</td>
+                <td class="py-5 px-6 text-slate-400 bg-white/[0.01]">You ask, it answers. Conversation ends.</td>
+                <td class="py-5 px-6 text-slate-200 bg-indigo-500/[0.02]">You set a goal. It plans → executes → self-corrects → delivers.</td>
               </tr>
-              <tr class="border-b border-slate-100">
-                <td class="py-3 pr-4 font-medium text-slate-700">Can it actually do things?</td>
-                <td class="py-3 px-4 text-slate-600 bg-slate-50">Only outputs text.</td>
-                <td class="py-3 px-4 text-slate-700 bg-blue-50/50">Operates browsers, calls tools, completes real actions.</td>
+              <tr class="border-b border-white/[0.04]">
+                <td class="py-5 pr-6 font-semibold text-slate-200">Can it actually do things?</td>
+                <td class="py-5 px-6 text-slate-400 bg-white/[0.01]">Only outputs text. Cannot interact with browsers, APIs, or files.</td>
+                <td class="py-5 px-6 text-slate-200 bg-indigo-500/[0.02]">Operates browsers, calls APIs, reads and writes files, completes real actions.</td>
               </tr>
-              <tr class="border-b border-slate-100">
-                <td class="py-3 pr-4 font-medium text-slate-700">Multi-step execution</td>
-                <td class="py-3 px-4 text-slate-600 bg-slate-50"><span class="text-red-500">✗</span> Not supported — one exchange, done.</td>
-                <td class="py-3 px-4 text-slate-700 bg-blue-50/50"><span class="text-emerald-500">✓</span> Auto-decomposes tasks, works step by step until delivery.</td>
+              <tr class="border-b border-white/[0.04]">
+                <td class="py-5 pr-6 font-semibold text-slate-200">Multi-step execution</td>
+                <td class="py-5 px-6 text-slate-400 bg-white/[0.01]">One exchange, done. No memory of previous steps, no follow-through.</td>
+                <td class="py-5 px-6 text-slate-200 bg-indigo-500/[0.02]">Auto-decomposes complex tasks, works step by step until delivery. Self-corrects on failure.</td>
               </tr>
-              <tr class="border-b border-slate-100">
-                <td class="py-3 pr-4 font-medium text-slate-700">Essence</td>
-                <td class="py-3 px-4 text-slate-600 bg-slate-50">A supercharged text generator.</td>
-                <td class="py-3 px-4 text-slate-700 bg-blue-50/50">A digital worker that gets things done.</td>
+              <tr class="border-b border-white/[0.04]">
+                <td class="py-5 pr-6 font-semibold text-slate-200">Reliability & oversight</td>
+                <td class="py-5 px-6 text-slate-400 bg-white/[0.01]">Generates plausible text — no built-in fact-checking or action verification.</td>
+                <td class="py-5 px-6 text-slate-200 bg-indigo-500/[0.02]">Can verify its own output against goals. Human oversight recommended for critical decisions.</td>
+              </tr>
+              <tr class="border-b border-white/[0.04]">
+                <td class="py-5 pr-6 font-semibold text-slate-200">Essence</td>
+                <td class="py-5 px-6 text-slate-400 bg-white/[0.01]">A supercharged text generator.</td>
+                <td class="py-5 px-6 text-slate-200 bg-indigo-500/[0.02]">A digital worker that plans, acts, and delivers.</td>
               </tr>
               <tr>
-                <td class="py-3 pr-4 font-medium text-slate-700">In one line</td>
-                <td class="py-3 px-4 text-slate-600 bg-slate-50 rounded-b-lg"><strong>AI that talks.</strong></td>
-                <td class="py-3 px-4 text-slate-700 bg-blue-50/50 rounded-b-lg"><strong class="text-blue-700">AI that acts.</strong></td>
+                <td class="py-5 pr-6 font-semibold text-slate-200">In one line</td>
+                <td class="py-5 px-6 text-slate-400 bg-white/[0.01] rounded-b-xl"><strong class="text-slate-300">AI that talks.</strong></td>
+                <td class="py-5 px-6 text-indigo-200 bg-indigo-500/[0.02] rounded-b-xl"><strong class="text-indigo-300">AI that acts.</strong></td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="max-w-[720px] text-slate-600 leading-relaxed text-sm">
-          <p>An AI Agent is not a new model. It's a large language model (LLM) with a full external architecture layered on top — a planning module, tool-use module, memory system, reflection module, and an execution environment (browser, VM, sandbox). Think of the LLM as the CPU, and the Agent as a complete computer built around it — with RAM, storage, and peripherals — that can actually do work.</p>
-          <p class="mt-3">The same base LLM (GPT-4o, Claude, Qwen3) can be packaged by different teams into entirely different Agent products. <strong>Agentic AI is an application architecture paradigm — not a specific model.</strong></p>
+
+        <!-- Bottom explanation -->
+        <div class="flex flex-col lg:flex-row gap-6">
+          <div class="flex-1 bg-[#242424] border border-white/5 rounded-2xl p-6">
+            <p class="text-slate-400 text-sm leading-relaxed">An AI Agent is not a new model. It's a large language model (LLM) with a full external architecture layered on top — a planning module, tool-use module, memory system, reflection module, and an execution environment (browser, VM, sandbox). Think of the LLM as the CPU, and the Agent as a complete computer built around it — with RAM, storage, and peripherals — that can actually do work.</p>
+          </div>
+          <div class="flex-1 bg-[#242424] border border-white/5 rounded-2xl p-6">
+            <p class="text-slate-400 text-sm leading-relaxed">The same base LLM (GPT-4o, Claude, Qwen3) can be packaged by different teams into entirely different Agent products. <strong class="text-slate-200">Agentic AI is an application architecture paradigm — not a specific model.</strong></p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ====== Section 08: Selection Guide ====== -->
-    <section class="bg-slate-50">
+    <section class="section-card">
       <div class="max-w-container mx-auto px-6 py-20 md:py-24">
-        <h2 class="text-[28px] md:text-[36px] font-bold text-slate-900 leading-[1.2] tracking-[-0.01em] mb-2">Not Sure Where to Start?</h2>
-        <p class="text-slate-500 mb-10">Match your need to the right category.</p>
+        <h2 class="text-[28px] md:text-[36px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-2">Not Sure Where to Start?</h2>
+        <p class="text-slate-400 mb-10">Match your need to the right category.</p>
         <div class="space-y-5 max-w-[720px]">
-          <div class="flex items-start gap-4 p-5 bg-white rounded-xl border border-slate-200">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" class="mt-0.5 flex-shrink-0"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            <p class="text-slate-700 leading-relaxed"><strong class="text-slate-900">If you want to automate web tasks</strong> — filling forms, logging into backends, bulk data collection, multi-step clicking → start with <strong>Browser Agents</strong>. We recommend <a href="#" class="text-blue-600 font-medium">OpenClaw</a> first.</p>
+          <div class="flex items-start gap-4 p-5 selection-row rounded-xl">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2" class="mt-0.5 flex-shrink-0"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <p class="text-slate-200 leading-relaxed"><strong class="text-white">If you want to automate web tasks</strong> — filling forms, logging into backends, bulk data collection, multi-step clicking → start with <strong>Browser Agents</strong>. We recommend <a href="#browser-agents" class="text-indigo-400 font-medium">OpenClaw</a> first.</p>
           </div>
-          <div class="flex items-start gap-4 p-5 bg-white rounded-xl border border-slate-200">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" class="mt-0.5 flex-shrink-0"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            <p class="text-slate-700 leading-relaxed"><strong class="text-slate-900">If you need to research and write reports</strong> — market analysis, competitive research, industry trends → start with <strong>Research Agents</strong>. We recommend <a href="#" class="text-blue-600 font-medium">Perplexity Deep Research</a> first.</p>
+          <div class="flex items-start gap-4 p-5 selection-row rounded-xl">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2" class="mt-0.5 flex-shrink-0"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <p class="text-slate-200 leading-relaxed"><strong class="text-white">If you need to research and write reports</strong> — market analysis, competitive research, industry trends → start with <strong>Research Agents</strong>. We recommend <a href="#research-agents" class="text-indigo-400 font-medium">Perplexity Deep Research</a> first.</p>
           </div>
-          <div class="flex items-start gap-4 p-5 bg-white rounded-xl border border-slate-200">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" class="mt-0.5 flex-shrink-0"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            <p class="text-slate-700 leading-relaxed"><strong class="text-slate-900">If you want to save time on repetitive coding</strong> — fixing bugs, running tests, shipping small features → start with <strong>Task Agents</strong>. We recommend <a href="#" class="text-blue-600 font-medium">Devin</a> or <a href="#" class="text-blue-600 font-medium">Cursor Agent</a> first.</p>
+          <div class="flex items-start gap-4 p-5 selection-row rounded-xl">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2" class="mt-0.5 flex-shrink-0"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <p class="text-slate-200 leading-relaxed"><strong class="text-white">If you want to save time on repetitive coding</strong> — fixing bugs, running tests, shipping small features → start with <strong>Task Agents</strong>. We recommend <a href="#task-agents" class="text-indigo-400 font-medium">Devin</a> or <a href="#task-agents" class="text-indigo-400 font-medium">Cursor Agent</a> first.</p>
           </div>
         </div>
         <p class="mt-8 text-sm">
-          <a href="#" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">Or see the full comparison guide →</a>
+          <a href="#compare" class="text-slate-400 hover:text-indigo-400 font-medium transition-colors">Or see the full comparison guide →</a>
         </p>
       </div>
     </section>
 
     <!-- ====== Section 09: For Whom / Not For ====== -->
-    <section class="bg-white">
+    <section class="section-dark">
       <div class="max-w-container mx-auto px-6 py-20 md:py-24">
-        <h2 class="text-[28px] md:text-[36px] font-bold text-slate-900 leading-[1.2] tracking-[-0.01em] mb-10">Is This Site for You?</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-6 md:p-8">
-            <h3 class="flex items-center gap-2 text-lg font-semibold text-emerald-700 mb-5">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h2 class="text-[28px] md:text-[36px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-10 text-center">Is This Site for You?</h2>
+        <div class="grid md:grid-cols-5 gap-6 items-stretch">
+          <!-- For You card - spans 2 columns -->
+          <div class="md:col-span-2 for-card for-yes rounded-2xl p-6 md:p-8 flex flex-col">
+            <h3 class="flex items-center gap-2 text-lg font-semibold text-indigo-300 mb-5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               It's for you if:
             </h3>
-            <ul class="space-y-3 text-slate-700">
-              <li class="flex items-start gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>You do repetitive web tasks, data compilation, or research every day</li>
-              <li class="flex items-start gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>You want to save time with AI but don't know which tool to start with</li>
-              <li class="flex items-start gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>You don't need deep technical details — just a working solution, fast</li>
-              <li class="flex items-start gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>You're in ops, analysis, entrepreneurship, product, or light development — anyone who "does more than code"</li>
+            <ul class="space-y-3 text-slate-200 flex-1">
+              <li class="flex items-start gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>You do repetitive web tasks, data compilation, or research every day</li>
+              <li class="flex items-start gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>You want to save time with AI but don't know which tool to start with</li>
+              <li class="flex items-start gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>You don't need deep technical details — just a working solution, fast</li>
+              <li class="flex items-start gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>You're in ops, analysis, entrepreneurship, product, or light development — anyone who "does more than code"</li>
             </ul>
           </div>
-          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 md:p-8">
-            <h3 class="flex items-center gap-2 text-lg font-semibold text-slate-600 mb-5">
+          <!-- Center divider column -->
+          <div class="hidden md:flex flex-col items-center justify-center gap-4">
+            <div class="w-px flex-1 bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
+            <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+              <span class="text-xs font-bold text-slate-500">VS</span>
+            </div>
+            <div class="w-px flex-1 bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
+          </div>
+          <!-- Not For card - spans 2 columns -->
+          <div class="md:col-span-2 for-card for-no rounded-2xl p-6 md:p-8 flex flex-col">
+            <h3 class="flex items-center gap-2 text-lg font-semibold text-slate-400 mb-5">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
               Not a great fit if:
             </h3>
-            <ul class="space-y-3 text-slate-600">
+            <ul class="space-y-3 text-slate-400 flex-1">
               <li class="flex items-start gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" class="mt-0.5 flex-shrink-0"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>You only need one-off Q&A — ChatGPT handles that fine</li>
               <li class="flex items-start gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" class="mt-0.5 flex-shrink-0"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>You prefer 100% manual control and don't trust any automation</li>
               <li class="flex items-start gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" class="mt-0.5 flex-shrink-0"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>You want to study LangGraph, AutoGen, multi-agent architectures — that's what technical blogs are for</li>
@@ -555,121 +931,121 @@
             </ul>
           </div>
         </div>
-        <p class="mt-6 text-sm text-slate-500 italic">We tell you who this isn't for, so you can trust us when we say who it is for.</p>
+        <p class="mt-8 text-sm text-slate-500 italic text-center">We tell you who this isn't for, so you can trust us when we say who it is for.</p>
       </div>
     </section>
 
     <!-- ====== Section 10: Trend Analysis ====== -->
-    <section class="bg-slate-50">
+    <section class="section-card">
       <div class="max-w-container mx-auto px-6 py-20 md:py-24">
-        <h2 class="text-[28px] md:text-[36px] font-bold text-slate-900 leading-[1.2] tracking-[-0.01em] mb-4">Trend or Bubble? Is Now the Right Time?</h2>
-        <p class="text-slate-500 mb-10 max-w-[640px]">Agentic AI is in the early-to-mid transition from technical validation to product adoption. Not concept phase, not bubble, not mass adoption — exactly the best window to learn and get started.</p>
+        <h2 class="text-[28px] md:text-[36px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-4">Trend or Bubble? Is Now the Right Time?</h2>
+        <p class="text-slate-400 mb-10 max-w-[640px]">Agentic AI is in the early-to-mid transition from technical validation to product adoption. Not concept phase, not bubble, not mass adoption — exactly the best window to learn and get started.</p>
         <div class="grid md:grid-cols-3 gap-6 mb-8">
-          <div class="bg-white rounded-xl p-6 border border-slate-200">
-            <div class="text-2xl font-bold text-blue-600 mb-2">01</div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">Search Behavior Has Shifted</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">Users have moved from asking "what is Agentic AI" to "how do I use it" and "which one is best" — the hallmark of a maturing concept. Google Trends shows stable 30-80 search volume with a clear weekday-high, weekend-low "learning pattern."</p>
+          <div class="trend-card rounded-xl p-6">
+            <div class="text-2xl font-bold text-indigo-400 mb-2">01</div>
+            <h3 class="text-lg font-semibold text-white mb-2">Search Behavior Has Shifted</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">Users have moved from asking "what is Agentic AI" to "how do I use it" and "which one is best" — the hallmark of a maturing concept. Google Trends shows stable 30-80 search volume with a clear weekday-high, weekend-low "learning pattern."</p>
           </div>
-          <div class="bg-white rounded-xl p-6 border border-slate-200">
-            <div class="text-2xl font-bold text-blue-600 mb-2">02</div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">Products Are Emerging</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">Google Trends Rising terms now include specific product names — "open claw" <span class="text-amber-500 font-semibold">(+2800%)</span>, "hermes agent" (Breakout), "claude computer use" <span class="text-amber-500 font-semibold">(+3900%)</span>. The market is migrating from abstract concepts to concrete tools.</p>
+          <div class="trend-card rounded-xl p-6">
+            <div class="text-2xl font-bold text-indigo-400 mb-2">02</div>
+            <h3 class="text-lg font-semibold text-white mb-2">Products Are Emerging</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">Google Trends Rising terms now include specific product names — "open claw" <span class="text-amber-400 font-semibold">(+2800%)</span>, "hermes agent" (Breakout), "claude computer use" <span class="text-amber-400 font-semibold">(+3900%)</span>. The market is migrating from abstract concepts to concrete tools.</p>
           </div>
-          <div class="bg-white rounded-xl p-6 border border-slate-200">
-            <div class="text-2xl font-bold text-blue-600 mb-2">03</div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">Tech Giants Are All In</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">OpenAI (Operator, Deep Research), Anthropic (Computer Use, MCP protocol — now the industry "USB standard" for tool calling), Google (Project Mariner, Gemini Deep Research), Salesforce (Agentforce) — all made strategic bets since late 2024.</p>
+          <div class="trend-card rounded-xl p-6">
+            <div class="text-2xl font-bold text-indigo-400 mb-2">03</div>
+            <h3 class="text-lg font-semibold text-white mb-2">Tech Giants Are All In</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">OpenAI (Operator, Deep Research), Anthropic (Computer Use, MCP protocol — now the industry "USB standard" for tool calling), Google (Project Mariner, Gemini Deep Research), Salesforce (Agentforce) — all made strategic bets since late 2024.</p>
           </div>
         </div>
         <p class="text-sm">
-          <a href="#" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">Deep dive: why 2024 was the inflection point, full Google Trends data, risks and limitations →</a>
+          <a href="#compare" class="text-slate-400 hover:text-indigo-400 font-medium transition-colors">Deep dive: why 2024 was the inflection point, full Google Trends data, risks and limitations →</a>
         </p>
       </div>
     </section>
 
     <!-- ====== Section 11: Trust & Updates ====== -->
-    <section class="bg-white">
+    <section class="section-dark">
       <div class="max-w-container mx-auto px-6 py-20 md:py-24">
-        <h2 class="text-[28px] md:text-[36px] font-bold text-slate-900 leading-[1.2] tracking-[-0.01em] mb-10">Is This Site Alive? Worth Bookmarking?</h2>
-        <p class="text-slate-500 mb-10 max-w-[640px]">Tool aggregation sites have one problem: they look dead. Here's how we avoid that.</p>
+        <h2 class="text-[28px] md:text-[36px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-10">Is This Site Alive? Worth Bookmarking?</h2>
+        <p class="text-slate-400 mb-10 max-w-[640px]">Tool aggregation sites have one problem: they look dead. Here's how we avoid that.</p>
         <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-          <div class="text-center">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" class="mx-auto mb-3"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
-            <h3 class="font-semibold text-slate-900 mb-1">Updated Weekly</h3>
-            <p class="text-sm text-slate-500">New tools added as they emerge — we don't let the list go stale.</p>
+          <div class="trust-card text-center">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="1.5" class="trust-icon mx-auto mb-3 transition-colors"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+            <h3 class="font-semibold text-white mb-1">Updated Weekly</h3>
+            <p class="text-sm text-slate-400">New tools added as they emerge — we don't let the list go stale.</p>
           </div>
-          <div class="text-center">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" class="mx-auto mb-3"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <h3 class="font-semibold text-slate-900 mb-1">Hands-On Tested</h3>
-            <p class="text-sm text-slate-500">Every tool is actually used — not copy-pasted from marketing pages.</p>
+          <div class="trust-card text-center">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="1.5" class="trust-icon mx-auto mb-3 transition-colors"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <h3 class="font-semibold text-white mb-1">Hands-On Tested</h3>
+            <p class="text-sm text-slate-400">Every tool is actually used — not copy-pasted from marketing pages.</p>
           </div>
-          <div class="text-center">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" class="mx-auto mb-3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <h3 class="font-semibold text-slate-900 mb-1">Not Sponsored</h3>
-            <p class="text-sm text-slate-500">Rankings based on real usability — not who paid for placement.</p>
+          <div class="trust-card text-center">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="1.5" class="trust-icon mx-auto mb-3 transition-colors"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <h3 class="font-semibold text-white mb-1">Not Sponsored</h3>
+            <p class="text-sm text-slate-400">Rankings based on real usability — not who paid for placement.</p>
           </div>
-          <div class="text-center">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5" class="mx-auto mb-3"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
-            <h3 class="font-semibold text-slate-900 mb-1">Outdated Tools Replaced</h3>
-            <p class="text-sm text-slate-500">We don't hoard listings — tools that stop working get removed.</p>
+          <div class="trust-card text-center">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="1.5" class="trust-icon mx-auto mb-3 transition-colors"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+            <h3 class="font-semibold text-white mb-1">Outdated Tools Replaced</h3>
+            <p class="text-sm text-slate-400">We don't hoard listings — tools that stop working get removed.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ====== Section 12: FAQ ====== -->
-    <section id="faq" class="bg-slate-50">
+    <section id="faq" class="section-card">
       <div class="max-w-container mx-auto px-6 py-20 md:py-24">
-        <h2 class="text-[28px] md:text-[36px] font-bold text-slate-900 leading-[1.2] tracking-[-0.01em] mb-10">Quick Answers</h2>
+        <h2 class="text-[28px] md:text-[36px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-10">Quick Answers</h2>
         <div class="max-w-[720px] space-y-3">
           <!-- FAQ 1 (open by default) -->
-          <div class="bg-white rounded-xl border border-slate-200">
+          <div class="faq-item rounded-xl">
             <button class="faq-trigger w-full flex items-center justify-between p-5 text-left" aria-expanded="true" aria-controls="faq1">
-              <span class="font-semibold text-slate-900 pr-4">Are these AI tools safe? What should I watch out for?</span>
+              <span class="text-base font-semibold text-white pr-4">Are these AI tools safe? What should I watch out for?</span>
               <svg class="faq-chevron flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div id="faq1" class="faq-panel open" role="region">
-              <p class="px-5 pb-5 text-slate-600 leading-relaxed">AI agents have permission to operate browsers and call tools, which carries inherent risk. We recommend: (1) manually approve sensitive operations — payments, emails, file deletion — before they execute; (2) never enter core passwords into an agent environment; (3) prioritize enterprise-grade products with published security audits. Salesforce, NVIDIA, and other enterprise players now treat "agent security" as a core selling point.</p>
+              <p class="px-5 pb-5 text-base text-slate-400 leading-relaxed">AI agents have permission to operate browsers and call tools, which carries inherent risk. We recommend: (1) manually approve sensitive operations — payments, emails, file deletion — before they execute; (2) never enter core passwords into an agent environment; (3) prioritize enterprise-grade products with published security audits. Salesforce, NVIDIA, and other enterprise players now treat "agent security" as a core selling point.</p>
             </div>
           </div>
           <!-- FAQ 2 -->
-          <div class="bg-white rounded-xl border border-slate-200">
+          <div class="faq-item rounded-xl">
             <button class="faq-trigger w-full flex items-center justify-between p-5 text-left" aria-expanded="false" aria-controls="faq2">
-              <span class="font-semibold text-slate-900 pr-4">Do I need to write code?</span>
+              <span class="text-base font-semibold text-white pr-4">Do I need to write code?</span>
               <svg class="faq-chevron flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div id="faq2" class="faq-panel" role="region">
-              <p class="px-5 pb-5 text-slate-600 leading-relaxed">Browser automation and research agents require no coding at all — you describe what you want in natural language. Task/coding agents are developer-facing and need basic code-reading ability to evaluate whether the output is correct.</p>
+              <p class="px-5 pb-5 text-base text-slate-400 leading-relaxed">Browser automation and research agents require no coding at all — you describe what you want in natural language. Task/coding agents are developer-facing and need basic code-reading ability to evaluate whether the output is correct.</p>
             </div>
           </div>
           <!-- FAQ 3 -->
-          <div class="bg-white rounded-xl border border-slate-200">
+          <div class="faq-item rounded-xl">
             <button class="faq-trigger w-full flex items-center justify-between p-5 text-left" aria-expanded="false" aria-controls="faq3">
-              <span class="font-semibold text-slate-900 pr-4">Free or paid?</span>
+              <span class="text-base font-semibold text-white pr-4">Free or paid?</span>
               <svg class="faq-chevron flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div id="faq3" class="faq-panel" role="region">
-              <p class="px-5 pb-5 text-slate-600 leading-relaxed">Research tools (Perplexity, Gemini) typically have free tiers with limited usage. Browser automation and coding tools are primarily subscription-based, with some offering trials. Each tool's pricing is detailed on its individual page.</p>
+              <p class="px-5 pb-5 text-base text-slate-400 leading-relaxed">Research tools (Perplexity, Gemini) typically have free tiers with limited usage. Browser automation and coding tools are primarily subscription-based, with some offering trials. Each tool's pricing is detailed on its individual page.</p>
             </div>
           </div>
           <!-- FAQ 4 -->
-          <div class="bg-white rounded-xl border border-slate-200">
+          <div class="faq-item rounded-xl">
             <button class="faq-trigger w-full flex items-center justify-between p-5 text-left" aria-expanded="false" aria-controls="faq4">
-              <span class="font-semibold text-slate-900 pr-4">Which tool should I start with?</span>
+              <span class="text-base font-semibold text-white pr-4">Which tool should I start with?</span>
               <svg class="faq-chevron flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div id="faq4" class="faq-panel" role="region">
-              <p class="px-5 pb-5 text-slate-600 leading-relaxed">Start from the repetitive task you hate most. If you fill out forms and manage web backends every day → start with a Browser Agent (we recommend OpenClaw). If you spend hours researching and writing reports → start with a Research Agent (we recommend Perplexity Deep Research). If you write repetitive code → start with a Task Agent (Devin or Cursor Agent).</p>
+              <p class="px-5 pb-5 text-base text-slate-400 leading-relaxed">Start from the repetitive task you hate most. If you fill out forms and manage web backends every day → start with a Browser Agent (we recommend OpenClaw). If you spend hours researching and writing reports → start with a Research Agent (we recommend Perplexity Deep Research). If you write repetitive code → start with a Task Agent (Devin or Cursor Agent).</p>
             </div>
           </div>
           <!-- FAQ 5 -->
-          <div class="bg-white rounded-xl border border-slate-200">
+          <div class="faq-item rounded-xl">
             <button class="faq-trigger w-full flex items-center justify-between p-5 text-left" aria-expanded="false" aria-controls="faq5">
-              <span class="font-semibold text-slate-900 pr-4">How often is this directory updated?</span>
+              <span class="text-base font-semibold text-white pr-4">How often is this directory updated?</span>
               <svg class="faq-chevron flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div id="faq5" class="faq-panel" role="region">
-              <p class="px-5 pb-5 text-slate-600 leading-relaxed">Weekly. New AI agent tools are added as they emerge and pass our testing. Tools that become outdated or deprecated are removed — we don't hoard listings. We prioritize quality over quantity. Each tool is hands-on tested, not just summarized from its landing page.</p>
+              <p class="px-5 pb-5 text-base text-slate-400 leading-relaxed">Weekly. New AI agent tools are added as they emerge and pass our testing. Tools that become outdated or deprecated are removed — we don't hoard listings. We prioritize quality over quantity. Each tool is hands-on tested, not just summarized from its landing page.</p>
             </div>
           </div>
         </div>
@@ -677,56 +1053,56 @@
     </section>
 
     <!-- ====== Section 13: Bottom CTA + Micro-Conversion Bridge ====== -->
-    <section id="cta" class="bg-slate-900 text-white">
+    <section id="cta" class="cta-section text-white">
       <div class="max-w-container mx-auto px-6 py-20 md:py-24 text-center">
         <h2 class="text-[28px] md:text-[36px] font-bold leading-[1.2] tracking-[-0.01em] mb-4">Let AI Handle the Grunt Work</h2>
         <p class="text-slate-400 text-lg mb-10 max-w-[560px] mx-auto">Find tools that actually get things done. Start saving time today.</p>
-        <a href="#tools" class="inline-flex items-center px-8 py-3.5 bg-blue-600 text-white text-base font-semibold rounded-lg hover:bg-blue-700 btn-transition mb-16">
+        <a href="#tools" class="inline-flex items-center px-6 py-3 gradient-cta text-white text-base font-semibold rounded-xl mb-16">
           Find Your AI Tool
           <svg class="ml-2" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
 
         <!-- Micro-Conversion Bridge -->
         <div class="border-t border-slate-700/50 pt-16">
-          <p class="text-sm text-slate-500 mb-10">Not ready to browse? Here are three ways to stay connected — pick one.</p>
+          <p class="text-sm text-slate-400 mb-10">Not ready to browse? Here are three ways to stay connected — pick one.</p>
           <div class="grid md:grid-cols-3 gap-6 max-w-[900px] mx-auto text-left">
             <!-- Free Guide -->
-            <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+            <div class="subscribe-card rounded-2xl p-6">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.5" class="mb-4"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               <h3 class="font-semibold text-white mb-2">Get the Free Guide</h3>
               <p class="text-sm text-slate-400 mb-4">"10 Tasks You Can Automate with AI Agents Right Now" — ready-to-use workflows, no code needed.</p>
               <form class="space-y-3" onsubmit="return handleEmailSubmit(event, 'guide')">
                 <label for="guide-email" class="sr-only">Email for free guide</label>
-                <input id="guide-email" type="email" required placeholder="Your email" class="w-full px-3.5 py-2.5 bg-slate-700/50 border border-slate-600 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <button type="submit" class="w-full py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 btn-transition">Get the Guide</button>
+                <input id="guide-email" type="email" required placeholder="Your email" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <button type="submit" class="w-full py-2.5 gradient-cta text-white text-sm font-semibold rounded-xl">Get the Guide</button>
               </form>
             </div>
             <!-- Bookmark -->
-            <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+            <div class="subscribe-card rounded-2xl p-6">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.5" class="mb-4"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
               <h3 class="font-semibold text-white mb-2">Bookmark This Page</h3>
-              <p class="text-sm text-slate-400 mb-4">Tool list updated weekly. Press <kbd class="px-1.5 py-0.5 bg-slate-700 rounded text-xs text-slate-300">Ctrl+D</kbd> or <kbd class="px-1.5 py-0.5 bg-slate-700 rounded text-xs text-slate-300">Cmd+D</kbd> — next visit, there'll be something new.</p>
-              <p class="text-sm text-slate-500 mt-8">No email required. Just come back.</p>
+              <p class="text-sm text-slate-400 mb-4">Tool list updated weekly. Press <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-xs text-slate-200">Ctrl+D</kbd> or <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-xs text-slate-200">Cmd+D</kbd> — next visit, there'll be something new.</p>
+              <p class="text-sm text-slate-400 mt-8">No email required. Just come back.</p>
             </div>
             <!-- Newsletter -->
-            <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+            <div class="subscribe-card rounded-2xl p-6">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.5" class="mb-4"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
               <h3 class="font-semibold text-white mb-2">Subscribe by Email</h3>
               <p class="text-sm text-slate-400 mb-4">Weekly updates — new tools discovered and real usage tips. No spam, unsubscribe anytime.</p>
               <form class="space-y-3" onsubmit="return handleEmailSubmit(event, 'subscribe')">
                 <label for="subscribe-email" class="sr-only">Email for newsletter</label>
-                <input id="subscribe-email" type="email" required placeholder="Your email" class="w-full px-3.5 py-2.5 bg-slate-700/50 border border-slate-600 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <button type="submit" class="w-full py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 btn-transition">Subscribe</button>
+                <input id="subscribe-email" type="email" required placeholder="Your email" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <button type="submit" class="w-full py-2.5 gradient-cta text-white text-sm font-semibold rounded-xl">Subscribe</button>
               </form>
             </div>
           </div>
           <div class="mt-8 flex flex-col items-center gap-2">
             <label class="flex items-center gap-2 text-sm text-slate-400 cursor-pointer">
-              <input type="checkbox" id="optin" class="w-4 h-4 rounded border-slate-600 text-blue-600 focus:ring-blue-500" onchange="updateOptin()">
+              <input type="checkbox" id="optin" class="w-4 h-4 rounded border-white/20 text-indigo-500 focus:ring-indigo-500" onchange="updateOptin()">
               I agree to receive emails from DoWithAI. I can unsubscribe at any time.
             </label>
-            <p class="text-xs text-slate-500">
-              Read our <a href="privacy-policy.html" class="text-blue-400 hover:text-blue-300 underline">Privacy Policy</a>.
+            <p class="text-xs text-slate-400">
+              Read our <a href="privacy-policy.html" class="text-indigo-400 hover:text-indigo-300 underline">Privacy Policy</a>.
             </p>
           </div>
         </div>
@@ -734,7 +1110,7 @@
     </section>
 
     <!-- ====== Section 14: Disclaimer ====== -->
-    <section class="bg-slate-900 border-t border-slate-700/50">
+    <section class="cta-section border-t border-white/5">
       <div class="max-w-container mx-auto px-6 py-8">
         <p class="text-xs text-slate-500 leading-relaxed max-w-[800px]">
           <strong class="text-slate-400">Disclaimer:</strong> DoWithAI provides information about third-party AI tools for general informational purposes only. We do not endorse, guarantee, or assume responsibility for any third-party product, service, or website. Users should independently evaluate each tool before use, review its terms and privacy policy, and exercise caution when granting access to sensitive systems. AI agents operate with varying degrees of autonomy and may produce unintended results — human supervision is recommended for critical tasks. Tool features and pricing may change. Check the official website for the latest information. All product names, logos, and brands are property of their respective owners.
@@ -745,11 +1121,11 @@
   </main>
 
   <!-- ====== Footer ====== -->
-  <footer class="bg-slate-800 text-slate-400">
+  <footer class="site-footer text-slate-400">
     <div class="max-w-container mx-auto px-6 py-12">
       <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
         <div>
-          <h4 class="text-white font-bold text-lg mb-2">DoWithAI</h4>
+          <h4 class="text-white font-bold text-lg mb-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-indigo-500 inline-block"></span>DoWithAI</h4>
           <p class="text-sm leading-relaxed">Find AI tools that actually get work done.</p>
         </div>
         <div>
@@ -776,7 +1152,7 @@
           </ul>
         </div>
       </div>
-      <div class="border-t border-slate-700/50 pt-6 text-center text-xs text-slate-500">
+      <div class="border-t border-slate-700/50 pt-6 text-center text-xs text-slate-400">
         © 2026 DoWithAI. All rights reserved.
       </div>
     </div>
