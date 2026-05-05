@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('../fonts/inter-latin.woff2') format('woff2');
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Skip to content link */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    z-index: 100;
+    padding: 8px 16px;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 0 0 8px 8px;
+    font-size: 14px;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+}
+
+@layer components {
+  /* FAQ accordion */
+  .faq-trigger {
+    cursor: pointer;
+  }
+  .faq-trigger[aria-expanded="true"] .faq-chevron {
+    transform: rotate(180deg);
+  }
+  .faq-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .faq-panel.open {
+    max-height: 500px;
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Button transitions */
+  .btn-transition {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  /* Focus visible */
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #2563eb;
+    border-radius: 4px;
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+  }
+  .mobile-menu.open {
+    display: flex;
+  }
+}
+
+@layer utilities {
+  /* Reduce motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
