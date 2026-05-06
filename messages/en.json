@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Get SaaS - Modern SaaS Template Designed for Global Markets",
-    "description": "Get SaaS is a modern SaaS template designed for global markets, featuring complete user authentication, payment systems, multi-language support, and SEO optimization. Built with Next.js to help developers launch SaaS products quickly.",
+    "title": "DoWithAI — Find AI Agents for Real Work",
+    "description": "Discover AI agents for research, lead generation, SEO, content creation, and business automation. Compare tools, browse workflows, and automate your work.",
     "terms": {
       "title": "Terms of Service - Get SaaS",
       "description": "View Get SaaS's Terms of Service for template usage, understanding usage rules, license agreement and user rights and responsibilities."
@@ -603,7 +603,7 @@
           "status": "Status",
           "subscribed_at": "Subscribed At",
           "unsubscribed_at": "Unsubscribed At",
-          "chinese": "中文",
+          "chinese": "Chinese",
           "english": "English",
           "active": "Active",
           "cancelled": "Cancelled"

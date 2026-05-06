@@ -1,32 +1,18 @@
 import { getAllTasks, getFeaturedTools } from '@/lib/task-queries'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
 
-type Props = { params: Promise<{ locale: string }> }
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params
-  return {
-    title: locale === 'zh'
-      ? 'DoWithAI — 用AI智能体完成真实工作'
-      : 'DoWithAI — Find AI Agents for Real Work',
-    description: locale === 'zh'
-      ? '发现用于竞品研究、潜客开发、SEO内容和商业自动化的AI智能体。'
-      : 'Discover AI agents for research, lead generation, SEO, content creation, and business automation.',
-  }
+export const metadata: Metadata = {
+  title: 'DoWithAI — Find AI Agents for Real Work',
+  description: 'Discover AI agents for research, lead generation, SEO, content creation, and business automation.',
 }
 
-export default async function HomePage({ params }: Props) {
-  const { locale } = await params
-  const isZh = locale === 'zh'
-
+export default async function HomePage() {
   const tasks = await getAllTasks()
   const featuredTools = await getFeaturedTools()
 
   return (
     <div className="min-h-screen bg-[#0b0f19] text-slate-300">
-      {/* Nav */}
       <nav className="border-b border-white/5 sticky top-0 bg-[#0b0f19]/80 backdrop-blur-md z-50">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-8">
@@ -37,7 +23,7 @@ export default async function HomePage({ params }: Props) {
           </div>
           <div>
             <a href="#subscribe" className="px-4 py-2 text-sm bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all">
-              {isZh ? '获取工作流' : 'Get Workflows'}
+              Get Workflows
             </a>
           </div>
         </div>
@@ -47,27 +33,23 @@ export default async function HomePage({ params }: Props) {
         {/* Hero */}
         <section className="py-20 md:py-28 px-6 text-center">
           <h1 className="text-[40px] md:text-[56px] font-bold leading-[1.08] text-white max-w-4xl mx-auto">
-            {isZh
-              ? '用AI智能体完成真实工作'
-              : 'Find AI Agents for Real Work'}
+            Find AI Agents for Real Work
           </h1>
           <p className="text-lg md:text-xl text-slate-400 mt-6 max-w-2xl mx-auto leading-relaxed">
-            {isZh
-              ? '发现用于研究、潜客开发、SEO内容、数据采集和商业自动化的AI智能体。'
-              : 'Discover AI agents for research, lead generation, SEO, content creation, and business automation.'}
+            Discover AI agents for research, lead generation, SEO, content creation, and business automation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link
               href="/tasks"
               className="px-8 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all shadow-lg shadow-indigo-500/25 text-lg"
             >
-              {isZh ? '按任务探索' : 'Explore by Task'}
+              Explore by Task
             </Link>
             <a
               href="#subscribe"
               className="px-8 py-3.5 border border-white/10 text-slate-300 font-semibold rounded-xl hover:border-indigo-500/30 transition-all text-lg"
             >
-              {isZh ? '获取每周工作流' : 'Get Weekly AI Workflows'}
+              Get Weekly AI Workflows
             </a>
           </div>
         </section>
@@ -75,7 +57,7 @@ export default async function HomePage({ params }: Props) {
         {/* Task Cards */}
         <section className="max-w-6xl mx-auto px-6 pb-20">
           <h2 className="text-2xl md:text-[32px] font-bold text-white text-center mb-10">
-            {isZh ? '你想自动化什么？' : 'What do you want to automate?'}
+            What do you want to automate?
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tasks.map(task => (
@@ -103,10 +85,10 @@ export default async function HomePage({ params }: Props) {
           <section className="max-w-6xl mx-auto px-6 pb-20">
             <div className="flex items-center justify-between mb-10">
               <h2 className="text-2xl md:text-[32px] font-bold text-white">
-                {isZh ? '推荐智能体' : 'Top Recommended Agents'}
+                Top Recommended Agents
               </h2>
               <Link href="/agents" className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors">
-                {isZh ? '查看全部 →' : 'View all →'}
+                View all →
               </Link>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
@@ -132,13 +114,9 @@ export default async function HomePage({ params }: Props) {
         {/* Email Subscribe */}
         <section id="subscribe" className="max-w-4xl mx-auto px-6 pb-20">
           <div className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-2xl p-10 text-center">
-            <h2 className="text-2xl font-bold text-white mb-2">
-              {isZh ? '获取 20 个AI工作流' : 'Get 20 AI Workflows'}
-            </h2>
+            <h2 className="text-2xl font-bold text-white mb-2">Get 20 AI Workflows</h2>
             <p className="text-slate-400 mb-6">
-              {isZh
-                ? '免费获取研究、SEO和潜客开发的工作流。无垃圾邮件，随时取消订阅。'
-                : 'Free AI workflows for research, SEO, and lead generation. No spam, unsubscribe anytime.'}
+              Free AI workflows for research, SEO, and lead generation. No spam, unsubscribe anytime.
             </p>
             <form
               action="https://app.convertkit.com/forms/placeholder"
@@ -148,7 +126,7 @@ export default async function HomePage({ params }: Props) {
               <input
                 type="email"
                 name="email_address"
-                placeholder={isZh ? '你的邮箱地址' : 'Your email address'}
+                placeholder="Your email address"
                 className="flex-1 px-4 py-3 bg-[#0b0f19] border border-white/10 rounded-xl text-white placeholder:text-slate-600 focus:outline-none focus:border-indigo-500/50"
                 required
               />
@@ -156,11 +134,11 @@ export default async function HomePage({ params }: Props) {
                 type="submit"
                 className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all whitespace-nowrap"
               >
-                {isZh ? '免费获取' : 'Get Free Workflows'}
+                Get Free Workflows
               </button>
             </form>
             <p className="text-xs text-slate-600 mt-3">
-              {isZh ? '加入其他500+专业人士，每周获取AI工作流。' : 'Join 500+ professionals getting AI workflows weekly.'}
+              Join 500+ professionals getting AI workflows weekly.
             </p>
           </div>
         </section>

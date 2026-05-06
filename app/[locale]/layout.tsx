@@ -4,7 +4,7 @@ import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
-const locales = ['en', 'zh']
+const locales = ['en']
 
 export async function generateMetadata({
   params
@@ -30,12 +30,10 @@ export async function generateMetadata({
       template: `%s | ${t('title')}`
     },
     description: t('description'),
-    keywords: locale === 'zh'
-      ? 'SaaS模版,出海SaaS,Next.js模版,用户认证,支付系统,多语言支持,SEO优化,现代化SaaS,全球化部署,企业级SaaS'
-      : 'SaaS Template,Global SaaS,Next.js Template,User Authentication,Payment System,Multi-language Support,SEO Optimization,Modern SaaS,Global Deployment,Enterprise SaaS',
-    authors: [{ name: 'Get SaaS Team' }],
-    creator: 'Get SaaS',
-    publisher: 'Get SaaS',
+    keywords: 'AI Agents,AI Workflow Automation,Competitor Research,Lead Generation,SEO Content,Web Scraping,Market Research',
+    authors: [{ name: 'DoWithAI' }],
+    creator: 'DoWithAI',
+    publisher: 'DoWithAI',
     formatDetection: {
       email: false,
       address: false,
@@ -51,17 +49,16 @@ export async function generateMetadata({
     alternates: baseUrl ? {
       canonical: currentUrl,
       languages: {
-        'zh': `${baseUrl}/zh`,
         'en': `${baseUrl}/en`,
       },
     } : undefined,
     openGraph: {
       type: 'website',
-      locale: locale === 'zh' ? 'zh_CN' : 'en_US',
+      locale: 'en_US',
       url: currentUrl,
       title: t('title'),
       description: t('description'),
-      siteName: 'Get SaaS',
+      siteName: 'DoWithAI',
       images: baseUrl ? [
         {
           url: `${baseUrl}/images/homehaibao.png`,
@@ -100,7 +97,7 @@ export async function generateMetadata({
       'theme-color': '#00F0FF',
       'apple-mobile-web-app-capable': 'yes',
       'apple-mobile-web-app-status-bar-style': 'black-translucent',
-      'apple-mobile-web-app-title': 'Get SaaS',
+      'apple-mobile-web-app-title': 'DoWithAI',
     },
   }
 }

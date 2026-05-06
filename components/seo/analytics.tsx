@@ -1,12 +1,11 @@
 "use client"
 
 import Script from 'next/script'
-import { seoConfig } from '@/lib/seo-config'
 
-export function GoogleAnalytics() {
-  const gaId = seoConfig.analytics.googleAnalytics
-  
-  if (!gaId) {
+function GoogleAnalytics() {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID
+
+  if (!gaId || gaId === '谷歌GA-ID') {
     return null
   }
 
@@ -28,34 +27,32 @@ export function GoogleAnalytics() {
   )
 }
 
-export function BaiduAnalytics() {
-  const baiduId = seoConfig.analytics.baiduAnalytics
-  
-  if (!baiduId) {
+function PostHogAnalytics() {
+  const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY
+  const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com'
+
+  if (!posthogKey) {
     return null
   }
 
   return (
-    <Script id="baidu-analytics" strategy="afterInteractive">
+    <Script id="posthog-analytics" strategy="afterInteractive">
       {`
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?${baiduId}";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups getSessionId getSessionId alias set_config".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        posthog.init('${posthogKey}', {
+          api_host: '${posthogHost}',
+          person_profiles: 'identified_only',
+        })
       `}
     </Script>
   )
 }
 
-// 通用分析组件
 export function Analytics() {
   return (
     <>
       <GoogleAnalytics />
-      <BaiduAnalytics />
+      <PostHogAnalytics />
     </>
   )
 }
