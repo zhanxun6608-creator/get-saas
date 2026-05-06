@@ -26,7 +26,7 @@ export async function getAllTools() {
 }
 
 export async function getFeaturedTools() {
-  return await db.select().from(tools).where(eq(tools.featuredRank, 1).or(eq(tools.featuredRank, 2)).or(eq(tools.featuredRank, 3))).orderBy(tools.featuredRank)
+  return await db.select().from(tools).where(inArray(tools.featuredRank, [1, 2, 3])).orderBy(tools.featuredRank)
 }
 
 export async function getWorkflowBySlug(slug: string) {
