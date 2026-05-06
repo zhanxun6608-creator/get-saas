@@ -31,23 +31,13 @@ export default async function HomePage() {
 
       <main>
         {/* Hero */}
-        <section className="relative py-20 md:py-28 px-6 text-center overflow-hidden">
-          {/* Background glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-indigo-500/20 bg-indigo-500/5 text-indigo-400 text-xs font-medium mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-              AI Agent Discovery Platform
-            </div>
-            <h1 className="text-[44px] md:text-[64px] font-bold leading-[1.05] max-w-4xl mx-auto">
-              <span className="text-white">Find AI Agents for </span>
-              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-300 bg-clip-text text-transparent">
-                Real Work
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-slate-400 mt-6 max-w-2xl mx-auto leading-relaxed">
-              Discover the best AI agents for research, lead generation, SEO, content creation, and business automation — tested, compared, and ranked.
-            </p>
+        <section className="py-20 md:py-28 px-6 text-center">
+          <h1 className="text-[40px] md:text-[56px] font-bold leading-[1.08] text-white max-w-4xl mx-auto">
+            Find AI Agents for Real Work
+          </h1>
+          <p className="text-lg md:text-xl text-slate-400 mt-6 max-w-2xl mx-auto leading-relaxed">
+            Discover AI agents for research, lead generation, SEO, content creation, and business automation.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link
               href="/tasks"
@@ -61,7 +51,6 @@ export default async function HomePage() {
             >
               Get Weekly AI Workflows
             </a>
-          </div>
           </div>
         </section>
 
