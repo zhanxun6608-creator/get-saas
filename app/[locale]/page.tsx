@@ -101,6 +101,7 @@ export default async function HomePage() {
                   <div className="mt-3 text-xs text-slate-500">{tool.pricing}</div>
                   <a
                     href={`/go/${tool.slug}`}
+                    target="_blank" rel="noopener noreferrer"
                     className="mt-4 block text-center py-2.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 rounded-xl hover:bg-indigo-500 hover:text-white transition-all text-sm font-medium"
                   >
                     Try Now

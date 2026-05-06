@@ -42,7 +42,7 @@ export default async function AgentPage({ params }: Props) {
           <h1 className="text-[36px] md:text-[44px] font-bold text-white">{tool.name}</h1>
           <p className="text-lg text-slate-400 mt-3 max-w-2xl">{tool.longDescription || tool.description}</p>
           <div className="mt-6 flex gap-4">
-            <a href={`/go/${tool.slug}`} className="px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all shadow-lg shadow-indigo-500/25">Try {tool.name} →</a>
+            <a href={`/go/${tool.slug}`} target="_blank" rel="noopener noreferrer" className="px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all shadow-lg shadow-indigo-500/25">Try {tool.name} →</a>
             <a href={tool.websiteUrl} target="_blank" rel="noopener noreferrer" className="px-8 py-3 border border-white/10 text-slate-300 font-medium rounded-xl hover:border-indigo-500/30 transition-all">Visit Website</a>
           </div>
         </section>
@@ -88,7 +88,7 @@ export default async function AgentPage({ params }: Props) {
         <section className="text-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-2xl p-8">
           <h3 className="text-xl font-bold text-white mb-2">Ready to automate your workflow?</h3>
           <p className="text-slate-400 mb-4">Start using {tool.name} today.</p>
-          <a href={`/go/${tool.slug}`} className="inline-block px-8 py-3 bg-white text-[#0b0f19] font-semibold rounded-xl hover:bg-slate-200 transition-all">Get Started Free →</a>
+          <a href={`/go/${tool.slug}`} target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-3 bg-white text-[#0b0f19] font-semibold rounded-xl hover:bg-slate-200 transition-all">Get Started Free →</a>
         </section>
       </main>
 

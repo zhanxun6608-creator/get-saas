@@ -56,6 +56,7 @@ export default async function AgentPage({ params }: Props) {
           <div className="mt-6 flex gap-4">
             <a
               href={`/go/${tool.slug}`}
+              target="_blank" rel="noopener noreferrer"
               className="px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all shadow-lg shadow-indigo-500/25"
             >
               Try {tool.name} →
@@ -148,6 +149,7 @@ export default async function AgentPage({ params }: Props) {
           <p className="text-slate-400 mb-4">Start using {tool.name} today.</p>
           <a
             href={`/go/${tool.slug}`}
+            target="_blank" rel="noopener noreferrer"
             className="inline-block px-8 py-3 bg-white text-[#0b0f19] font-semibold rounded-xl hover:bg-slate-200 transition-all"
           >
             Get Started Free →

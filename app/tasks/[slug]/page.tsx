@@ -44,6 +44,7 @@ export default async function TaskPage({ params }: Props) {
           {recommendedTools[0] && (
             <a
               href={`/go/${recommendedTools[0].slug}`}
+              target="_blank" rel="noopener noreferrer"
               className="inline-block mt-4 px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all shadow-lg shadow-indigo-500/25"
             >
               Start with the Best Tool
@@ -83,6 +84,7 @@ export default async function TaskPage({ params }: Props) {
                 <div className="mt-3 text-xs text-slate-500">{tool.pricing}</div>
                 <a
                   href={`/go/${tool.slug}`}
+                  target="_blank" rel="noopener noreferrer"
                   className="mt-4 block text-center py-2.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 rounded-xl hover:bg-indigo-500 hover:text-white transition-all text-sm font-medium"
                 >
                   Try Now
@@ -128,7 +130,7 @@ export default async function TaskPage({ params }: Props) {
                     </td>
                     <td className="py-3 px-4 text-slate-400 text-xs">{tool.bestFor?.slice(0, 2).join(', ')}</td>
                     <td className="py-3 pl-4">
-                      <a href={`/go/${tool.slug}`} className="text-indigo-400 hover:text-indigo-300 text-xs font-medium whitespace-nowrap">Try →</a>
+                      <a href={`/go/${tool.slug}`} target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 text-xs font-medium whitespace-nowrap">Try →</a>
                     </td>
                   </tr>
                 ))}

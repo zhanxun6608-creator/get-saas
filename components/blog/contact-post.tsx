@@ -50,7 +50,7 @@ export function ContactPost() {
                   </p>
                   <Link
                     href="https://x.com/zyailive"
-                    target="_blank"
+                    target="_blank" rel="noopener noreferrer"
                     className="text-primary hover:text-cyber-400 font-medium"
                   >
                     {t('contactMethods.twitter.handle')}
