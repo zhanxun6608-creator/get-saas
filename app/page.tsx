@@ -165,6 +165,8 @@ export default async function HomePage() {
             <Link href="/tasks" className="hover:text-indigo-400 transition-colors">Tasks</Link>
             <Link href="/agents" className="hover:text-indigo-400 transition-colors">Agents</Link>
             <Link href="/workflows" className="hover:text-indigo-400 transition-colors">Workflows</Link>
+            <Link href="/privacy" className="hover:text-indigo-400 transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-indigo-400 transition-colors">Terms</Link>
             <a href="mailto:zhanxun6608@gmail.com" className="hover:text-indigo-400 transition-colors">Contact</a>
           </div>
           <p className="text-xs text-slate-600">

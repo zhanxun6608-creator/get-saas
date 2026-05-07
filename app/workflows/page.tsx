@@ -45,7 +45,13 @@ export default async function WorkflowsPage() {
         </div>
       </main>
       <footer className="border-t border-white/5 bg-[#080c14]">
-        <div className="max-w-4xl mx-auto px-6 py-8 text-center text-xs text-slate-500">&copy; {new Date().getFullYear()} DoWithAI. All rights reserved.</div>
+        <div className="max-w-4xl mx-auto px-6 py-8 text-center text-xs text-slate-500">
+          <div className="flex justify-center gap-4 mb-2">
+            <a href="/privacy" className="hover:text-indigo-400 transition-colors">Privacy Policy</a>
+            <a href="/terms" className="hover:text-indigo-400 transition-colors">Terms of Service</a>
+          </div>
+          &copy; {new Date().getFullYear()} DoWithAI. All rights reserved.
+        </div>
       </footer>
     </div>
   )
